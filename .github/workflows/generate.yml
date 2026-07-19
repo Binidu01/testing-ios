@@ -43,24 +43,21 @@ jobs:
             --app-name "My iOS App" \
             --force
 
-      # ⭐ Rename ios to tauri (what Xcode expects)
-      - name: Rename ios script to tauri
+      # ⭐ Add tauri script for Xcode
+      - name: Add tauri script
         run: |
           cd my-ios-app
-          # Rename the script
           npm pkg set scripts.tauri="npx @tauri-apps/cli"
-          npm pkg delete scripts.ios
-          npm pkg delete scripts."ios:dev"
-          # Keep ios:build as is (not used by Xcode)
-          echo "✅ Renamed ios -> tauri"
 
-      # ⭐ Now use tauri instead of ios
-      - name: Wire native plugins with bini-native
-        continue-on-error: true
+      # ⭐ Run dev server in background to wire bini-native
+      - name: Wire native plugins
         run: |
           cd my-ios-app
-          echo "🔧 Wiring native plugins with bini-native..."
-          npm run tauri -- ios dev --no-watch || true
+          echo "🔧 Starting dev server to wire bini-native..."
+          npm run dev &
+          DEV_PID=$!
+          sleep 25
+          kill $DEV_PID 2>/dev/null || true
           echo "✅ Native plugins wired"
 
       - name: Build frontend
@@ -68,11 +65,12 @@ jobs:
           cd my-ios-app
           npm run build
 
+      # ⭐ Build with --no-dev to skip Simulator
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
-          # Use tauri for build too
-          npm run tauri -- ios build --target aarch64-sim
+          # --no-dev skips the dev server and Simulator
+          npm run tauri -- ios build --target aarch64-sim --no-dev
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
