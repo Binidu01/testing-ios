@@ -32,32 +32,24 @@ jobs:
           rustup target add aarch64-apple-ios-sim
           rustup target add x86_64-apple-ios
 
-      - name: Generate iOS project
+      - name: Generate iOS project (with npm and auto-install)
         run: |
           node dist/index.js my-ios-app \
             --platform ios \
             --typescript \
             --tailwind \
             --nosign \
-            --no-install \
+            --npm \
             --app-name "My iOS App" \
             --force
+        # The CLI will now automatically run npm install!
 
-      - name: Install project dependencies
-        run: |
-          cd my-ios-app
-          npm install
-
-      # ⭐ Run tauri ios dev with --no-watch
-      # This wires plugins with bini-native but doesn't open Simulator
-      - name: Wire native plugins (bini-native)
+      - name: Wire native plugins with bini-native
         continue-on-error: true
         run: |
           cd my-ios-app
-          echo "Running tauri ios dev --no-watch to wire plugins..."
-          # --no-watch prevents Simulator from opening
-          # --target specifies the architecture
-          timeout 45 npx @tauri-apps/cli ios dev --no-watch --target aarch64-sim || true
+          echo "🔧 Wiring native plugins with bini-native..."
+          npm run tauri ios dev -- --no-watch || true
           echo "✅ Native plugins wired"
 
       - name: Build frontend
@@ -68,7 +60,7 @@ jobs:
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
-          npx @tauri-apps/cli ios build --target aarch64-sim
+          npm run tauri ios build -- --target aarch64-sim
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
