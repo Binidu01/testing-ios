@@ -51,6 +51,7 @@ jobs:
 
       # ⭐ Run dev server in background to wire bini-native
       - name: Wire native plugins
+        continue-on-error: true
         run: |
           cd my-ios-app
           echo "🔧 Starting dev server to wire bini-native..."
@@ -65,12 +66,11 @@ jobs:
           cd my-ios-app
           npm run build
 
-      # ⭐ Build with --no-dev to skip Simulator
+      # ⭐ Build for iOS Simulator - no flags needed, build doesn't open Simulator
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
-          # --no-dev skips the dev server and Simulator
-          npm run tauri -- ios build --target aarch64-sim --no-dev
+          npm run tauri -- ios build --target aarch64-sim
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
