@@ -23,13 +23,19 @@ jobs:
       - name: Install CLI dependencies
         run: npm install
 
-      # ⭐ Setup Rust for macOS
+      # ⭐ Setup Rust for BOTH macOS architectures
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-apple-darwin
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
 
-      # ⭐ Generate macOS project (not iOS)
+      # ⭐ Install both targets explicitly (backup)
+      - name: Install macOS Rust targets
+        run: |
+          rustup target add aarch64-apple-darwin
+          rustup target add x86_64-apple-darwin
+
+      # ⭐ Generate macOS project
       - name: Generate macOS project
         run: |
           node dist/index.js my-macos-app \
@@ -41,7 +47,7 @@ jobs:
             --app-name "My macOS App" \
             --force
 
-      # ⭐ Add tauri script for Xcode
+      # ⭐ Add tauri script
       - name: Add tauri script
         run: |
           cd my-macos-app
@@ -71,12 +77,6 @@ jobs:
           cd my-macos-app
           npm run tauri -- build --target aarch64-apple-darwin
 
-      # ⭐ Build for macOS (Intel) - optional
-      - name: Build macOS app (Intel)
-        run: |
-          cd my-macos-app
-          npm run tauri -- build --target x86_64-apple-darwin
-
       # ⭐ Upload Apple Silicon build
       - name: Upload Apple Silicon .app
         uses: actions/upload-artifact@v4
@@ -84,16 +84,9 @@ jobs:
           name: macos-app-silicon
           path: my-macos-app/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/*.app
 
-      # ⭐ Upload Intel build
-      - name: Upload Intel .app
+      # ⭐ Upload Apple Silicon .dmg
+      - name: Upload Apple Silicon .dmg
         uses: actions/upload-artifact@v4
         with:
-          name: macos-app-intel
-          path: my-macos-app/src-tauri/target/x86_64-apple-darwin/release/bundle/macos/*.app
-
-      # ⭐ Upload .dmg (if created)
-      - name: Upload .dmg
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-dmg
-          path: my-macos-app/src-tauri/target/release/bundle/dmg/*.dmg
+          name: macos-dmg-silicon
+          path: my-macos-app/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
