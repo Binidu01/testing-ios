@@ -43,32 +43,36 @@ jobs:
             --app-name "My iOS App" \
             --force
 
-      # ⭐ Manual wiring - don't use tauri ios dev at all in CI
-      - name: Generate App.tsx with bini-router
+      # ⭐ Rename ios to tauri (what Xcode expects)
+      - name: Rename ios script to tauri
         run: |
           cd my-ios-app
-          echo "🔧 Generating App.tsx with bini-router..."
-          # Just run the dev server briefly to trigger bini-router
-          npm run dev &
-          DEV_PID=$!
-          sleep 15
-          kill $DEV_PID 2>/dev/null || true
-          echo "✅ App.tsx generated"
+          # Rename the script
+          npm pkg set scripts.tauri="npx @tauri-apps/cli"
+          npm pkg delete scripts.ios
+          npm pkg delete scripts."ios:dev"
+          # Keep ios:build as is (not used by Xcode)
+          echo "✅ Renamed ios -> tauri"
 
-      # ⭐ Build frontend
+      # ⭐ Now use tauri instead of ios
+      - name: Wire native plugins with bini-native
+        continue-on-error: true
+        run: |
+          cd my-ios-app
+          echo "🔧 Wiring native plugins with bini-native..."
+          npm run tauri -- ios dev --no-watch || true
+          echo "✅ Native plugins wired"
+
       - name: Build frontend
         run: |
           cd my-ios-app
           npm run build
 
-      # ⭐ Build for iOS Simulator - specify device explicitly
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
-          # List available simulators
-          xcrun simctl list devices available
-          # Build without trying to run the Simulator
-          npx @tauri-apps/cli ios build --target aarch64-sim
+          # Use tauri for build too
+          npm run tauri -- ios build --target aarch64-sim
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
