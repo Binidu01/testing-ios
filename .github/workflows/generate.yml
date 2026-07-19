@@ -1,0 +1,59 @@
+name: Generate and Build iOS App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Rust for iOS
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios
+
+      - name: Install iOS Rust targets
+        run: |
+          rustup target add aarch64-apple-ios
+          rustup target add x86_64-apple-ios
+
+      - name: Generate iOS project using CLI
+        run: |
+          node dist/index.js my-ios-app \
+            --platform ios \
+            --typescript \
+            --tailwind \
+            --nosign \
+            --no-install \
+            --app-name "My iOS App" \
+            --force
+
+      - name: Install project dependencies
+        run: |
+          cd my-ios-app
+          npm install
+
+      - name: Build for iOS Simulator
+        run: |
+          cd my-ios-app
+          npx @tauri-apps/cli ios build --target aarch64-apple-ios
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-simulator-build
+          path: my-ios-app/src-tauri/gen/apple/build/Products/Release-iphonesimulator/
