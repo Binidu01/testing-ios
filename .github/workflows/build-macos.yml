@@ -1,0 +1,99 @@
+name: Build and Test macOS App
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install CLI dependencies
+        run: npm install
+
+      # ⭐ Setup Rust for macOS
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+
+      # ⭐ Generate macOS project (not iOS)
+      - name: Generate macOS project
+        run: |
+          node dist/index.js my-macos-app \
+            --platform macos \
+            --typescript \
+            --tailwind \
+            --nosign \
+            --npm \
+            --app-name "My macOS App" \
+            --force
+
+      # ⭐ Add tauri script for Xcode
+      - name: Add tauri script
+        run: |
+          cd my-macos-app
+          npm pkg set scripts.tauri="npx @tauri-apps/cli"
+
+      # ⭐ Run dev server to wire bini-native
+      - name: Wire native plugins
+        continue-on-error: true
+        run: |
+          cd my-macos-app
+          echo "🔧 Starting dev server to wire bini-native..."
+          npm run dev &
+          DEV_PID=$!
+          sleep 20
+          kill $DEV_PID 2>/dev/null || true
+          echo "✅ Native plugins wired"
+
+      # ⭐ Build frontend
+      - name: Build frontend
+        run: |
+          cd my-macos-app
+          npm run build
+
+      # ⭐ Build for macOS (Apple Silicon)
+      - name: Build macOS app (Apple Silicon)
+        run: |
+          cd my-macos-app
+          npm run tauri -- build --target aarch64-apple-darwin
+
+      # ⭐ Build for macOS (Intel) - optional
+      - name: Build macOS app (Intel)
+        run: |
+          cd my-macos-app
+          npm run tauri -- build --target x86_64-apple-darwin
+
+      # ⭐ Upload Apple Silicon build
+      - name: Upload Apple Silicon .app
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app-silicon
+          path: my-macos-app/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/*.app
+
+      # ⭐ Upload Intel build
+      - name: Upload Intel .app
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app-intel
+          path: my-macos-app/src-tauri/target/x86_64-apple-darwin/release/bundle/macos/*.app
+
+      # ⭐ Upload .dmg (if created)
+      - name: Upload .dmg
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-dmg
+          path: my-macos-app/src-tauri/target/release/bundle/dmg/*.dmg
