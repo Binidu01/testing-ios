@@ -48,6 +48,23 @@ jobs:
           cd my-ios-app
           npm install
 
+      # ⭐ Run tauri ios dev with --no-watch
+      # This wires plugins with bini-native but doesn't open Simulator
+      - name: Wire native plugins (bini-native)
+        continue-on-error: true
+        run: |
+          cd my-ios-app
+          echo "Running tauri ios dev --no-watch to wire plugins..."
+          # --no-watch prevents Simulator from opening
+          # --target specifies the architecture
+          timeout 45 npx @tauri-apps/cli ios dev --no-watch --target aarch64-sim || true
+          echo "✅ Native plugins wired"
+
+      - name: Build frontend
+        run: |
+          cd my-ios-app
+          npm run build
+
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
