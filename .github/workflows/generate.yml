@@ -43,12 +43,6 @@ jobs:
             --app-name "My iOS App" \
             --force
 
-      # ⭐ Add tauri script for Xcode
-      - name: Add tauri script
-        run: |
-          cd my-ios-app
-          npm pkg set scripts.tauri="npx @tauri-apps/cli"
-
       # ⭐ Run dev server to wire bini-native
       - name: Wire native plugins
         continue-on-error: true
@@ -61,17 +55,12 @@ jobs:
           kill $DEV_PID 2>/dev/null || true
           echo "✅ Native plugins wired"
 
-      - name: Build frontend
-        run: |
-          cd my-ios-app
-          npm run build
-
+      # ⭐ Build for iOS Simulator (handles frontend build automatically)
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
           npm run tauri -- ios build --target aarch64-sim
 
-      # ⭐ FIXED: Correct artifact path
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
