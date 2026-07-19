@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import {input,select,password}from'@inquirer/prompts';import f from'fs';import y from'fs/promises';import l from'path';import {execSync}from'child_process';import {fileURLToPath}from'url';import {isatty}from'tty';var Y=fileURLToPath(import.meta.url),G=l.dirname(Y),Z=l.join(G,"..","package.json"),Q=JSON.parse(f.readFileSync(Z,"utf-8")),H=Q.version,ee=l.join(G,"..","assets"),n={reset:"\x1B[0m",bold:"\x1B[1m",dim:"\x1B[2m",cyan:"\x1B[36m",green:"\x1B[32m",yellow:"\x1B[33m",red:"\x1B[31m",blue:"\x1B[34m",magenta:"\x1B[35m"},ie=`
+import {input,select,password}from'@inquirer/prompts';import f from'fs';import x from'fs/promises';import d from'path';import {execSync}from'child_process';import {fileURLToPath}from'url';import {isatty}from'tty';var Y=fileURLToPath(import.meta.url),G=d.dirname(Y),Z=d.join(G,"..","package.json"),Q=JSON.parse(f.readFileSync(Z,"utf-8")),U=Q.version,ee=d.join(G,"..","assets"),n={reset:"\x1B[0m",bold:"\x1B[1m",dim:"\x1B[2m",cyan:"\x1B[36m",green:"\x1B[32m",yellow:"\x1B[33m",red:"\x1B[31m",blue:"\x1B[34m",magenta:"\x1B[35m"},te=`
 ${n.cyan}${n.bold}               
             XXXXXXXXXXXXXXXX               
          XXXXXXXXXXXXXXXXXXXXXz            
@@ -16,11 +16,11 @@ ${n.cyan}${n.bold}
       XXXXXXXXX  Xn     YXXXXXXXXXX        
       XXXXXXXXX  XXXXXXXXXXXXXXXXXX        
       XXXXXXXXX  XXXXXXXXXXXXXXXX          
-      XXXXXXXXX  XXXXXXXXXXXXX     
+      XXXXXXXXX  XXXXXXXXXXXXX                        
 ${n.reset}
-${n.dim}        Developed By Binidu${n.reset}
-`,_="v20.19.0",te=/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i,ne=/^(\.|\.\.|npm|node)|[<>:"|?*\\]|[^a-z0-9\-.]/i,i={info:e=>console.log(`${n.cyan}${n.bold}INFO${n.reset} ${e}`),success:e=>console.log(`${n.green}${n.bold}OK${n.reset} ${e}`),warn:e=>console.log(`${n.yellow}${n.bold}WARN${n.reset} ${e}`),error:e=>console.error(`${n.red}${n.bold}ERROR${n.reset} ${e}`),step:e=>console.log(`${n.blue}${n.bold}STEP${n.reset} ${e}`),plain:e=>console.log(e),skip:e=>console.log(`${n.yellow}${n.bold}SKIP${n.reset} ${e}`),command:e=>console.log(`${n.magenta}${n.bold}RUN${n.reset} ${e}`)};function A(){return isatty(process.stdin.fd)&&isatty(process.stdout.fd)}function w(e=1){process.exit(e);}async function X(e){return select({message:e.message,choices:[{name:"Yes",value:true},{name:"No",value:false}],default:e.default!==false})}function L(e){let t=e.split(/[-_\s]+/).filter(Boolean);return t.length===0?"My App":t.map(r=>r.charAt(0).toUpperCase()+r.slice(1)).join(" ")}process.on("SIGINT",()=>{i.plain(`
-`),i.warn("Operation cancelled."),w(0);});process.on("uncaughtException",e=>{i.error(`Uncaught exception: ${e.message}`),w(1);});process.on("unhandledRejection",e=>{i.error(`Unhandled rejection: ${e instanceof Error?e.message:String(e)}`),w(1);});function ae(){let[e=0,t=0]=process.version.slice(1).split(".").map(Number),[r=0,a=0]=_.slice(1).split(".").map(Number);(e<r||e===r&&t<a)&&(i.error(`Node.js ${_}+ required. Current: ${process.version}`),i.info("Update at https://nodejs.org"),w(1));}function re(e=100){try{if(!f.statfsSync)return;let t=f.statfsSync(process.cwd()),r=t.bavail*t.bsize/(1024*1024);r<e&&(i.error(`Insufficient disk space. Need ${e}MB, have ${Math.floor(r)}MB.`),w(1));}catch(t){t.code!=="ENOENT"&&i.warn(`Could not check disk space: ${t.message}`);}}function oe(){let e=process.argv.slice(2);(e.includes("--version")||e.includes("-v"))&&(i.plain(`${n.cyan}Bini.js CLI${n.reset} v${H}`),w(0)),(e.includes("--help")||e.includes("-h"))&&(i.plain(`
+${n.dim}     Developed By Binidu${n.reset}
+`,_="v20.19.0",ie=/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i,ne=/^(\.|\.\.|npm|node)|[<>:"|?*\\]|[^a-z0-9\-.]/i,t={info:e=>console.log(`${n.cyan}${n.bold}INFO${n.reset} ${e}`),success:e=>console.log(`${n.green}${n.bold}OK${n.reset} ${e}`),warn:e=>console.log(`${n.yellow}${n.bold}WARN${n.reset} ${e}`),error:e=>console.error(`${n.red}${n.bold}ERROR${n.reset} ${e}`),step:e=>console.log(`${n.blue}${n.bold}STEP${n.reset} ${e}`),plain:e=>console.log(e),skip:e=>console.log(`${n.yellow}${n.bold}SKIP${n.reset} ${e}`),command:e=>console.log(`${n.magenta}${n.bold}RUN${n.reset} ${e}`)};function A(){return isatty(process.stdin.fd)&&isatty(process.stdout.fd)}function w(e=1){process.exit(e);}async function S(e){return select({message:e.message,choices:[{name:"Yes",value:true},{name:"No",value:false}],default:e.default!==false})}function L(e){let i=e.split(/[-_\s]+/).filter(Boolean);return i.length===0?"My App":i.map(r=>r.charAt(0).toUpperCase()+r.slice(1)).join(" ")}process.on("SIGINT",()=>{t.plain(`
+`),t.warn("Operation cancelled."),w(0);});process.on("uncaughtException",e=>{t.error(`Uncaught exception: ${e.message}`),w(1);});process.on("unhandledRejection",e=>{t.error(`Unhandled rejection: ${e instanceof Error?e.message:String(e)}`),w(1);});function ae(){let[e=0,i=0]=process.version.slice(1).split(".").map(Number),[r=0,a=0]=_.slice(1).split(".").map(Number);(e<r||e===r&&i<a)&&(t.error(`Node.js ${_}+ required. Current: ${process.version}`),t.info("Update at https://nodejs.org"),w(1));}function re(e=100){try{if(!f.statfsSync)return;let i=f.statfsSync(process.cwd()),r=i.bavail*i.bsize/(1024*1024);r<e&&(t.error(`Insufficient disk space. Need ${e}MB, have ${Math.floor(r)}MB.`),w(1));}catch(i){i.code!=="ENOENT"&&t.warn(`Could not check disk space: ${i.message}`);}}function oe(){let e=process.argv.slice(2);(e.includes("--version")||e.includes("-v"))&&(t.plain(`${n.cyan}Bini.js CLI${n.reset} v${U}`),w(0)),(e.includes("--help")||e.includes("-h"))&&(t.plain(`
 ${n.bold}${n.cyan}Usage:${n.reset} create-bini-app [project-name] [options]
 
 ${n.bold}${n.cyan}Options:${n.reset}
@@ -49,15 +49,15 @@ ${n.bold}${n.cyan}Examples:${n.reset}
   ${n.dim}create-bini-app my-app --platform windows${n.reset}
   ${n.dim}create-bini-app my-app --platform android --app-name "My App"${n.reset}
   ${n.dim}create-bini-app my-app --platform android --nosign --pnpm${n.reset}
-    `),w(0));let t=e.includes("--typescript"),r=e.includes("--javascript")||e.includes("--no-typescript"),a=e.includes("--tailwind"),o=e.includes("--css-modules"),c=e.includes("--none"),p=e.includes("--install"),s=e.includes("--no-install"),g=e.indexOf("--platform"),u=g!==-1?e[g+1]:void 0,h=e.indexOf("--app-name"),d=h!==-1?e[h+1]:void 0,m=e.includes("--sign"),k=e.includes("--nosign"),S={"--npm":"npm","--pnpm":"pnpm","--yarn":"yarn","--bun":"bun"},I=Object.keys(S).filter(C=>e.includes(C));t&&r&&(i.error("Cannot use --typescript and --javascript together."),w(1)),[a,o,c].filter(Boolean).length>1&&(i.error("Cannot use more than one of --tailwind, --css-modules, --none."),w(1)),p&&s&&(i.error("Cannot use --install and --no-install together."),w(1)),m&&k&&(i.error("Cannot use --sign and --nosign together."),w(1)),I.length>1&&(i.error(`Cannot use more than one of ${Object.keys(S).join(", ")} together.`),w(1));let J=I.length===1?S[I[0]]:void 0;return {projectName:e.find(C=>!C.startsWith("--")&&C!==u&&C!==d),flags:{force:e.includes("--force"),typescript:t?true:r?false:void 0,javascript:r,tailwind:a,cssModules:o,noStyle:c,install:p?true:s?false:void 0,platform:u,appName:d,sign:m?true:k?false:void 0,packageManager:J}}}function W(e){return !e||e.length>50||te.test(e)?false:!ne.test(e)}function se(e){return ["web","windows","linux","macos","android","ios"].includes(e)}function q(){let e=process.platform;return e==="win32"?"windows":e==="darwin"?"macos":e==="linux"?"linux":"windows"}function U(e){try{f.mkdirSync(e,{recursive:!0,mode:488});}catch(t){throw new Error(`Cannot create directory: ${e}. ${t.message}`)}}async function x(e,t,r={}){await y.mkdir(l.dirname(e),{recursive:true,mode:488}),await y.writeFile(e,t,{mode:r.mode??416,flag:r.flag??"w"});}function de(e,t={}){let r=t.allowedBase??process.cwd();if(!e)throw new Error("Path required.");let a=l.resolve(e),o=l.resolve(r),c=l.relative(o,a);if(c===""||c.startsWith("..")||l.isAbsolute(c))throw new Error(`Refusing to delete: "${a}" is outside the allowed base "${o}".`);if([l.resolve("/"),process.env.HOME?l.resolve(process.env.HOME):null,process.env.USERPROFILE?l.resolve(process.env.USERPROFILE):null].filter(g=>g!==null).includes(a))throw new Error("Refusing to delete a system directory.");if(a.split(l.sep).filter(Boolean).length<2)throw new Error("Refusing to delete a root-level directory (safety check).");f.existsSync(a)&&f.rmSync(a,{recursive:true,force:true});}function O(e,t={}){try{let r=execSync(e,{shell:process.platform==="win32"?"cmd.exe":"/bin/sh",stdio:t.stdio??"pipe",timeout:t.timeout??12e4,cwd:t.cwd,windowsHide:!0,encoding:"utf8"});return String(r)}catch(r){throw new Error(`Command failed: ${e}
-${r.message??String(r)}`)}}function T(e){try{let t=process.platform==="win32"?`where ${e}`:`which ${e}`;return O(t,{stdio:"ignore"}),!0}catch{return  false}}function D(e,t){try{execSync(e,{cwd:t,stdio:"ignore",shell:process.platform==="win32"?"cmd.exe":"/bin/sh",timeout:12e4,windowsHide:!0});}catch{}}function j(e,t){switch(e){case "npm":return `npx ${t}`;case "yarn":return `yarn ${t}`;case "pnpm":return `pnpm ${t}`;case "bun":return `bunx ${t}`}}function b(e,t){return e==="npm"?`npm run ${t}`:`${e} ${t}`}var E={bun:"bun --version",pnpm:"pnpm --version",yarn:"yarn --version",npm:"npm --version"};function le(){let t=[{name:"bun",command:E.bun,priority:4},{name:"pnpm",command:E.pnpm,priority:3},{name:"yarn",command:E.yarn,priority:2},{name:"npm",command:E.npm,priority:1}].filter(r=>{try{return O(r.command,{stdio:"ignore"}),!0}catch{return  false}});if(t.length===0)throw new Error("No package manager found. Install npm, yarn, pnpm, or bun.");return t.sort((r,a)=>a.priority-r.priority)[0].name}function ce(e){if(e)try{return O(E[e],{stdio:"ignore"}),{pm:e,failed:!1,forced:!0}}catch{i.error(`Requested package manager "${e}" was not found on PATH.`),w(1);}try{return {pm:le(),failed:!1,forced:!1}}catch(t){return i.warn(`Could not detect package manager: ${t.message}`),{pm:"npm",failed:true,forced:false}}}async function pe(e,t,r){if(!r)return  false;let a={npm:"npm install --no-audit --no-fund --loglevel=error",yarn:"yarn install --silent --no-progress",pnpm:"pnpm install --reporter=silent",bun:"bun install --silent"};i.step(`Installing dependencies with ${t}...`);try{return O(a[t],{cwd:e,stdio:"inherit",timeout:3e5}),i.success("Dependencies installed."),!0}catch{return i.warn("Auto-install failed. Run manually:"),i.plain(`    ${n.green}cd ${l.basename(e)}${n.reset}`),i.plain(`    ${n.green}${t} install${n.reset}`),false}}function me(e,t){return e.typescript===true?true:e.javascript===true?false:t.typescript}function ue(e){let t=e?"ts":"js";return {main:e?"tsx":"jsx",config:t,api:t}}async function ge(e,t){let r;e.typescript!==void 0?r=e.typescript:A()?r=await X({message:"Use TypeScript?",default:true}):r=true;let a;e.tailwind?a="Tailwind":e.cssModules?a="CSS Modules":e.noStyle?a="None":A()?a=await select({message:"Styling solution?",choices:[{name:"Tailwind CSS",value:"Tailwind"},{name:"CSS Modules",value:"CSS Modules"},{name:"None",value:"None"}],default:"Tailwind"}):a="Tailwind";let o,c=q();if(e.platform&&se(e.platform))o=e.platform;else if(A()){let s=[{name:"Web Application",value:"web"},{name:"Windows Desktop",value:"windows"},{name:"Linux Desktop",value:"linux"},{name:"macOS Desktop",value:"macos"},{name:"Android",value:"android"},{name:"iOS",value:"ios"}];console.log(`
-Detected OS: ${c}`),o=await select({message:"Select target platform:",choices:s,default:"web"});}else o="web";let p=t;return o!=="web"&&(e.appName?p=e.appName:A()?p=await input({message:"App name? (used as the app name and window title)",default:L(t),validate:s=>s.trim().length>0?true:"Required."}):p=L(t)),{typescript:r,styling:a,platform:o,appName:p}}async function fe(e){let t=["favicon.ico","apple-touch-icon.png","og-image.png","logo.png"];await Promise.all(t.map(async r=>{let a=l.join(ee,r),o=l.join(e,r);try{await y.access(a),await y.copyFile(a,o);}catch{i.warn(`Asset not found, skipping: ${r}`);}}));}async function he(e){let t={name:"Bini.js App",short_name:"BiniApp",description:"Modern React application built with Bini.js",start_url:"/",display:"standalone",background_color:"#ffffff",theme_color:"#00CFFF",icons:[{src:"/favicon.ico",sizes:"64x64 32x32 24x24 16x16",type:"image/x-icon"},{src:"/apple-touch-icon.png",sizes:"180x180",type:"image/png"}]};await x(l.join(e,"public","site.webmanifest"),JSON.stringify(t,null,2));}async function be(e,t,r,a,o){let c=a==="Tailwind"?`import tailwindcss from '@tailwindcss/vite';
+    `),w(0));let i=e.includes("--typescript"),r=e.includes("--javascript")||e.includes("--no-typescript"),a=e.includes("--tailwind"),o=e.includes("--css-modules"),c=e.includes("--none"),p=e.includes("--install"),s=e.includes("--no-install"),g=e.indexOf("--platform"),m=g!==-1?e[g+1]:void 0,h=e.indexOf("--app-name"),l=h!==-1?e[h+1]:void 0,u=e.includes("--sign"),X=e.includes("--nosign"),k={"--npm":"npm","--pnpm":"pnpm","--yarn":"yarn","--bun":"bun"},I=Object.keys(k).filter(C=>e.includes(C));i&&r&&(t.error("Cannot use --typescript and --javascript together."),w(1)),[a,o,c].filter(Boolean).length>1&&(t.error("Cannot use more than one of --tailwind, --css-modules, --none."),w(1)),p&&s&&(t.error("Cannot use --install and --no-install together."),w(1)),u&&X&&(t.error("Cannot use --sign and --nosign together."),w(1)),I.length>1&&(t.error(`Cannot use more than one of ${Object.keys(k).join(", ")} together.`),w(1));let J=I.length===1?k[I[0]]:void 0;return {projectName:e.find(C=>!C.startsWith("--")&&C!==m&&C!==l),flags:{force:e.includes("--force"),typescript:i?true:r?false:void 0,javascript:r,tailwind:a,cssModules:o,noStyle:c,install:p?true:s?false:void 0,platform:m,appName:l,sign:u?true:X?false:void 0,packageManager:J}}}function z(e){return !e||e.length>50||ie.test(e)?false:!ne.test(e)}function se(e){return ["web","windows","linux","macos","android","ios"].includes(e)}function q(){let e=process.platform;return e==="win32"?"windows":e==="darwin"?"macos":e==="linux"?"linux":"windows"}function H(e){try{f.mkdirSync(e,{recursive:!0,mode:488});}catch(i){throw new Error(`Cannot create directory: ${e}. ${i.message}`)}}async function y(e,i,r={}){await x.mkdir(d.dirname(e),{recursive:true,mode:488}),await x.writeFile(e,i,{mode:r.mode??416,flag:r.flag??"w"});}function le(e,i={}){let r=i.allowedBase??process.cwd();if(!e)throw new Error("Path required.");let a=d.resolve(e),o=d.resolve(r),c=d.relative(o,a);if(c===""||c.startsWith("..")||d.isAbsolute(c))throw new Error(`Refusing to delete: "${a}" is outside the allowed base "${o}".`);if([d.resolve("/"),process.env.HOME?d.resolve(process.env.HOME):null,process.env.USERPROFILE?d.resolve(process.env.USERPROFILE):null].filter(g=>g!==null).includes(a))throw new Error("Refusing to delete a system directory.");if(a.split(d.sep).filter(Boolean).length<2)throw new Error("Refusing to delete a root-level directory (safety check).");f.existsSync(a)&&f.rmSync(a,{recursive:true,force:true});}function N(e,i={}){try{let r=execSync(e,{shell:process.platform==="win32"?"cmd.exe":"/bin/sh",stdio:i.stdio??"pipe",timeout:i.timeout??12e4,cwd:i.cwd,windowsHide:!0,encoding:"utf8"});return String(r)}catch(r){throw new Error(`Command failed: ${e}
+${r.message??String(r)}`)}}function R(e){try{let i=process.platform==="win32"?`where ${e}`:`which ${e}`;return N(i,{stdio:"ignore"}),!0}catch{return  false}}function D(e,i){try{execSync(e,{cwd:i,stdio:"ignore",shell:process.platform==="win32"?"cmd.exe":"/bin/sh",timeout:12e4,windowsHide:!0});}catch{}}function j(e,i){switch(e){case "npm":return `npx ${i}`;case "yarn":return `yarn ${i}`;case "pnpm":return `pnpm ${i}`;case "bun":return `bunx ${i}`}}function b(e,i){return e==="npm"?`npm run ${i}`:`${e} ${i}`}var E={bun:"bun --version",pnpm:"pnpm --version",yarn:"yarn --version",npm:"npm --version"};function de(){let i=[{name:"bun",command:E.bun,priority:4},{name:"pnpm",command:E.pnpm,priority:3},{name:"yarn",command:E.yarn,priority:2},{name:"npm",command:E.npm,priority:1}].filter(r=>{try{return N(r.command,{stdio:"ignore"}),!0}catch{return  false}});if(i.length===0)throw new Error("No package manager found. Install npm, yarn, pnpm, or bun.");return i.sort((r,a)=>a.priority-r.priority)[0].name}function ce(e){if(e)try{return N(E[e],{stdio:"ignore"}),{pm:e,failed:!1,forced:!0}}catch{t.error(`Requested package manager "${e}" was not found on PATH.`),w(1);}try{return {pm:de(),failed:!1,forced:!1}}catch(i){return t.warn(`Could not detect package manager: ${i.message}`),{pm:"npm",failed:true,forced:false}}}async function pe(e,i,r){if(!r)return  false;let a={npm:"npm install --no-audit --no-fund --loglevel=error",yarn:"yarn install --silent --no-progress",pnpm:"pnpm install --reporter=silent",bun:"bun install --silent"};t.step(`Installing dependencies with ${i}...`);try{return N(a[i],{cwd:e,stdio:"inherit",timeout:3e5}),t.success("Dependencies installed."),!0}catch{return t.warn("Auto-install failed. Run manually:"),t.plain(`    ${n.green}cd ${d.basename(e)}${n.reset}`),t.plain(`    ${n.green}${i} install${n.reset}`),false}}function ue(e,i){return e.typescript===true?true:e.javascript===true?false:i.typescript}function me(e){let i=e?"ts":"js";return {main:e?"tsx":"jsx",config:i,api:i}}async function ge(e,i){let r;e.typescript!==void 0?r=e.typescript:A()?r=await S({message:"Use TypeScript?",default:true}):r=true;let a;e.tailwind?a="Tailwind":e.cssModules?a="CSS Modules":e.noStyle?a="None":A()?a=await select({message:"Styling solution?",choices:[{name:"Tailwind CSS",value:"Tailwind"},{name:"CSS Modules",value:"CSS Modules"},{name:"None",value:"None"}],default:"Tailwind"}):a="Tailwind";let o,c=q();if(e.platform&&se(e.platform))o=e.platform;else if(A()){let s=[{name:"Web Application",value:"web"},{name:"Windows Desktop",value:"windows"},{name:"Linux Desktop",value:"linux"},{name:"macOS Desktop",value:"macos"},{name:"Android",value:"android"},{name:"iOS",value:"ios"}];console.log(`
+Detected OS: ${c}`),o=await select({message:"Select target platform:",choices:s,default:"web"});}else o="web";let p=i;return o!=="web"&&(e.appName?p=e.appName:A()?p=await input({message:"App name? (used as the app name and window title)",default:L(i),validate:s=>s.trim().length>0?true:"Required."}):p=L(i)),{typescript:r,styling:a,platform:o,appName:p}}async function fe(e){let i=["favicon.ico","apple-touch-icon.png","og-image.png","logo.png"];await Promise.all(i.map(async r=>{let a=d.join(ee,r),o=d.join(e,r);try{await x.access(a),await x.copyFile(a,o);}catch{t.warn(`Asset not found, skipping: ${r}`);}}));}async function he(e){let i={name:"Bini.js App",short_name:"BiniApp",description:"Modern React application built with Bini.js",start_url:"/",display:"standalone",background_color:"#ffffff",theme_color:"#00CFFF",icons:[{src:"/favicon.ico",sizes:"64x64 32x32 24x24 16x16",type:"image/x-icon"},{src:"/apple-touch-icon.png",sizes:"180x180",type:"image/png"}]};await y(d.join(e,"public","site.webmanifest"),JSON.stringify(i,null,2));}async function be(e,i,r,a,o){let c=a==="Tailwind"?`import tailwindcss from '@tailwindcss/vite';
 `:"",p=a==="Tailwind"?`
-      tailwindcss(),`:"",s=t?`,
+      tailwindcss(),`:"",s=i?`,
     types: ["vite/client"]`:"",g=o?`import { biniNative } from 'bini-native';
-`:"",u=o?`
-      biniNative(),`:"",h=["'**/dist/**'","'**/node_modules/**'"];o&&(h.push("'**/src-tauri/**'"),h.push("'**/target/**'"),h.push("'**/*.exe'"),h.push("'**/*.dll'"),h.push("'**/*.pdb'"));let d=h.join(`,
-          `),m=`import { defineConfig, loadEnv } from 'vite';
+`:"",m=o?`
+      biniNative(),`:"",h=["'**/dist/**'","'**/node_modules/**'"];o&&(h.push("'**/src-tauri/**'"),h.push("'**/target/**'"),h.push("'**/*.exe'"),h.push("'**/*.dll'"),h.push("'**/*.pdb'"));let l=h.join(`,
+          `),u=`import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { biniroute } from 'bini-router';
 import { biniOverlay } from 'bini-overlay';
@@ -104,7 +104,7 @@ export default defineConfig(({ command, mode }) => {
       biniroute({ platform: 'node' }),
       biniOverlay(),
       biniEnv(),
-      biniExport(),${u}
+      biniExport(),${m}
     ],
 
     server: {
@@ -121,7 +121,7 @@ export default defineConfig(({ command, mode }) => {
       watch: {
         usePolling: !!env['CODESPACE_NAME'] || isTauri,
         ignored: [
-          ${d}
+          ${l}
         ],
       },
       strictPort: true,
@@ -169,7 +169,7 @@ export default defineConfig(({ command, mode }) => {
     }${s}
   };
 });
-`;await x(l.join(e,`vite.config.${r}`),m);}function we(e,t){let r={windows:`
+`;await y(d.join(e,`vite.config.${r}`),u);}function we(e,i){let r={windows:`
 ----------------------------------------------------------------------
   Windows Setup Requirements
 ----------------------------------------------------------------------
@@ -248,18 +248,18 @@ export default defineConfig(({ command, mode }) => {
      rustup target add aarch64-apple-ios
      rustup target add x86_64-apple-ios
      rustup target add aarch64-apple-ios-sim
-----------------------------------------------------------------------`};return r[e==="ios"?"ios":e==="android"?"android":t==="windows"?"windows":t==="macos"?"macos":"linux"]||r.linux}function ve(e){let t=e.toLowerCase().replace(/[^a-z0-9]+/g,""),r=t.length>0?t:"app";return `com.bini.${/^[0-9]/.test(r)?`app${r}`:r}`}async function xe(e,t){let r=l.join(e,"tauri.conf.json");if(f.existsSync(r))try{let a=await y.readFile(r,"utf-8"),o=JSON.parse(a),c=ve(t);if(o.identifier===c){i.skip(`Bundle identifier already set to ${c}`);return}o.identifier=c,await y.writeFile(r,JSON.stringify(o,null,2)+`
-`,{mode:416}),i.success(`Bundle identifier set to ${n.cyan}${c}${n.reset}`),i.info("Replace this with your own reverse-DNS identifier before publishing to an app store.");}catch(a){i.warn(`Could not set bundle identifier automatically: ${a.message}`),i.info(`Edit "identifier" in ${r} manually before building for Android/iOS/macOS.`);}}async function M(e,t,r){let a=[];if(r){for(let o of r.split(`
-`))a.push(`# ${o}`);a.push("");}for(let[o,c]of Object.entries(t))a.push(`${o}=${c}`);await x(e,a.join(`
+----------------------------------------------------------------------`};return r[e==="ios"?"ios":e==="android"?"android":i==="windows"?"windows":i==="macos"?"macos":"linux"]||r.linux}function ve(e){let i=e.toLowerCase().replace(/[^a-z0-9]+/g,""),r=i.length>0?i:"app";return `com.bini.${/^[0-9]/.test(r)?`app${r}`:r}`}async function ye(e,i){let r=d.join(e,"tauri.conf.json");if(f.existsSync(r))try{let a=await x.readFile(r,"utf-8"),o=JSON.parse(a),c=ve(i);if(o.identifier===c){t.skip(`Bundle identifier already set to ${c}`);return}o.identifier=c,await x.writeFile(r,JSON.stringify(o,null,2)+`
+`,{mode:416}),t.success(`Bundle identifier set to ${n.cyan}${c}${n.reset}`),t.info("Replace this with your own reverse-DNS identifier before publishing to an app store.");}catch(a){t.warn(`Could not set bundle identifier automatically: ${a.message}`),t.info(`Edit "identifier" in ${r} manually before building for Android/iOS/macOS.`);}}async function B(e,i,r){let a=[];if(r){for(let o of r.split(`
+`))a.push(`# ${o}`);a.push("");}for(let[o,c]of Object.entries(i))a.push(`${o}=${c}`);await y(e,a.join(`
 `)+`
-`,{mode:384});}async function R(e,t){let r=l.join(e,".gitignore"),a="";try{a=await y.readFile(r,"utf-8");}catch{a="";}let o=new Set(a.split(`
-`).map(s=>s.trim())),c=t.filter(s=>s.startsWith("#")||!o.has(s));if(c.length===0)return;let p=a.length>0&&!a.endsWith(`
+`,{mode:384});}async function O(e,i){let r=d.join(e,".gitignore"),a="";try{a=await x.readFile(r,"utf-8");}catch{a="";}let o=new Set(a.split(`
+`).map(s=>s.trim())),c=i.filter(s=>s.startsWith("#")||!o.has(s));if(c.length===0)return;let p=a.length>0&&!a.endsWith(`
 `)?`
-`:"";await y.appendFile(r,`${p}
+`:"";await x.appendFile(r,`${p}
 ${c.join(`
 `)}
-`,{mode:416});}async function K(e,t){let r=l.join(e,"tauri.conf.json");if(!f.existsSync(r))return i.warn(`Could not find ${r}.`),false;try{let a=await y.readFile(r,"utf-8"),o=JSON.parse(a);return t(o),await y.writeFile(r,JSON.stringify(o,null,2)+`
-`,{mode:416}),!0}catch(a){return i.warn(`Could not update ${r}: ${a.message}`),false}}async function ye(e){let t=l.join(e,"app","build.gradle.kts");if(!f.existsSync(t)){i.warn(`Could not find ${t}. Wire up signingConfigs manually \u2014 see the docs.`);return}try{let r=await y.readFile(t,"utf-8");if(r.includes("keystore.properties")){i.skip("build.gradle.kts already configured for release signing.");return}r.includes("import java.io.FileInputStream")||(r=`import java.io.FileInputStream
+`,{mode:416});}async function K(e,i){let r=d.join(e,"tauri.conf.json");if(!f.existsSync(r))return t.warn(`Could not find ${r}.`),false;try{let a=await x.readFile(r,"utf-8"),o=JSON.parse(a);return i(o),await x.writeFile(r,JSON.stringify(o,null,2)+`
+`,{mode:416}),!0}catch(a){return t.warn(`Could not update ${r}: ${a.message}`),false}}async function xe(e){let i=d.join(e,"app","build.gradle.kts");if(!f.existsSync(i)){t.warn(`Could not find ${i}. Wire up signingConfigs manually \u2014 see the docs.`);return}try{let r=await x.readFile(i,"utf-8");if(r.includes("keystore.properties")){t.skip("build.gradle.kts already configured for release signing.");return}r.includes("import java.io.FileInputStream")||(r=`import java.io.FileInputStream
 ${r}`),r.includes("import java.util.Properties")||(r=r.replace("import java.io.FileInputStream",`import java.io.FileInputStream
 import java.util.Properties`));let a=`    signingConfigs {
         create("release") {
@@ -276,64 +276,55 @@ import java.util.Properties`));let a=`    signingConfigs {
         }
     }
 
-`;if(!/buildTypes\s*\{/.test(r)){i.warn(`Could not find "buildTypes" block in ${t}. Add signingConfigs manually.`);return}r=r.replace(/(\n[^\S\n]*buildTypes\s*\{)/,`
+`;if(!/buildTypes\s*\{/.test(r)){t.warn(`Could not find "buildTypes" block in ${i}. Add signingConfigs manually.`);return}r=r.replace(/(\n[^\S\n]*buildTypes\s*\{)/,`
 ${a}$1`),/getByName\("release"\)\s*\{/.test(r)?r=r.replace(/(getByName\("release"\)\s*\{)/,`$1
-            signingConfig = signingConfigs.getByName("release")`):i.warn(`Could not find getByName("release") in ${t}. Set signingConfig manually.`),await y.writeFile(t,r,{mode:416}),i.success("Wired release signingConfig into build.gradle.kts");}catch(r){i.warn(`Could not patch build.gradle.kts: ${r.message}`),i.info("Configure it manually \u2014 see https://v2.tauri.app/distribute/sign/android/");}}async function ke(e,t,r){if(i.step("Android release signing"),!(r===true?true:await X({message:"Set up Android release signing now?",default:false}))){i.info("Skipped. See: https://v2.tauri.app/distribute/sign/android/");return}let o=l.join(t,"gen","android");if(!f.existsSync(o)){i.warn("Android project not found (src-tauri/gen/android missing). Run Android init first.");return}T("keytool")||i.warn("keytool not found on PATH (ships with the JDK). Add it to PATH or use Android Studio's copy.");let c=await X({message:"Do you already have a keystore (.jks) file?",default:false}),p,s,g;if(c)p=await input({message:"Path to existing keystore file:",validate:d=>f.existsSync(d)?true:"File not found."}),s=await input({message:"Key alias:",default:"upload"}),g=await password({message:"Keystore password:",mask:"*"});else {let d=l.join(e,"keystore.jks");if(p=await input({message:"Where should the keystore be created?",default:d}),s=await input({message:"Key alias:",default:"upload"}),g=await password({message:"Set a keystore password (min 6 chars):",mask:"*"}),f.existsSync(p))i.warn(`File already exists at ${p} \u2014 leaving it untouched.`);else {i.step("Generating keystore with keytool...");let m=`CN=${l.basename(e)}, OU=Dev, O=Bini, L=Unknown, S=Unknown, C=US`,k=`keytool -genkey -v -keystore "${p}" -keyalg RSA -keysize 2048 -validity 10000 -alias "${s}" -storepass "${g}" -keypass "${g}" -dname "${m}"`;try{O(k,{stdio:"pipe",timeout:3e4}),i.success(`Keystore created at ${p}`);}catch(S){i.warn(`Could not generate keystore automatically: ${S.message}`),i.info("Generate it manually with keytool \u2014 see https://v2.tauri.app/distribute/sign/android/");return}}}let u=l.join(o,"keystore.properties"),h=process.platform==="win32"?p.replace(/\\/g,"\\\\"):p;await x(u,`password=${g}
+            signingConfig = signingConfigs.getByName("release")`):t.warn(`Could not find getByName("release") in ${i}. Set signingConfig manually.`),await x.writeFile(i,r,{mode:416}),t.success("Wired release signingConfig into build.gradle.kts");}catch(r){t.warn(`Could not patch build.gradle.kts: ${r.message}`),t.info("Configure it manually \u2014 see https://v2.tauri.app/distribute/sign/android/");}}async function Xe(e,i,r){if(t.step("Android release signing"),!(r===true?true:await S({message:"Set up Android release signing now?",default:false}))){t.info("Skipped. See: https://v2.tauri.app/distribute/sign/android/");return}let o=d.join(i,"gen","android");if(!f.existsSync(o)){t.warn("Android project not found (src-tauri/gen/android missing). Run Android init first.");return}R("keytool")||t.warn("keytool not found on PATH (ships with the JDK). Add it to PATH or use Android Studio's copy.");let c=await S({message:"Do you already have a keystore (.jks) file?",default:false}),p,s,g;if(c)p=await input({message:"Path to existing keystore file:",validate:l=>f.existsSync(l)?true:"File not found."}),s=await input({message:"Key alias:",default:"upload"}),g=await password({message:"Keystore password:",mask:"*"});else {let l=d.join(e,"keystore.jks");if(p=await input({message:"Where should the keystore be created?",default:l}),s=await input({message:"Key alias:",default:"upload"}),g=await password({message:"Set a keystore password (min 6 chars):",mask:"*"}),f.existsSync(p))t.warn(`File already exists at ${p} \u2014 leaving it untouched.`);else {t.step("Generating keystore with keytool...");let u=`CN=${d.basename(e)}, OU=Dev, O=Bini, L=Unknown, S=Unknown, C=US`,X=`keytool -genkey -v -keystore "${p}" -keyalg RSA -keysize 2048 -validity 10000 -alias "${s}" -storepass "${g}" -keypass "${g}" -dname "${u}"`;try{N(X,{stdio:"pipe",timeout:3e4}),t.success(`Keystore created at ${p}`);}catch(k){t.warn(`Could not generate keystore automatically: ${k.message}`),t.info("Generate it manually with keytool \u2014 see https://v2.tauri.app/distribute/sign/android/");return}}}let m=d.join(o,"keystore.properties"),h=process.platform==="win32"?p.replace(/\\/g,"\\\\"):p;await y(m,`password=${g}
 keyAlias=${s}
 storeFile=${h}
-`,{mode:384}),i.success(`Wrote ${l.relative(e,u)}`),await R(e,["# Android signing (never commit)","src-tauri/gen/android/keystore.properties","*.jks","*.keystore"]),await ye(o),i.success("Android release signing configured. `pnpm android:build` will now produce a signed release.");}async function Xe(e,t){if(i.step("Windows code signing"),!(t===true?true:await X({message:"Configure Windows code signing now?",default:false}))){i.info("Skipped. See: https://v2.tauri.app/distribute/sign/windows/");return}i.plain(`${n.dim}Requires a code signing certificate already imported into your Windows
-certificate store (Import-PfxCertificate). See the docs if you haven't done that yet.${n.reset}`);let a=await input({message:"Certificate thumbprint (Personal > Certificates > Details in certmgr.msc):",validate:s=>s.trim().length>0?true:"Required."}),o=await select({message:"Digest algorithm:",choices:[{name:"sha256",value:"sha256"},{name:"sha1",value:"sha1"}],default:"sha256"}),c=await input({message:"Timestamp server URL:",default:"http://timestamp.comodoca.com"});await K(e,s=>{s.bundle=s.bundle??{},s.bundle.windows={...s.bundle.windows??{},certificateThumbprint:a,digestAlgorithm:o,timestampUrl:c};})&&(i.success("Windows signing configured in tauri.conf.json"),i.info("Cross-compiling from Linux/macOS requires a custom signCommand instead \u2014 see the docs."));}async function Se(e,t,r){if(i.step("macOS code signing"),!(r===true?true:await X({message:"Configure macOS code signing now?",default:false}))){i.info("Skipped. See: https://v2.tauri.app/distribute/sign/macos/");return}let o=await select({message:"Signing method:",choices:[{name:"Ad-hoc (local testing, no Apple Developer account)",value:"adhoc"},{name:"Apple Developer signing identity (Distribution / Developer ID)",value:"identity"}],default:"adhoc"}),c=o==="adhoc"?"-":await input({message:'Signing identity (from "security find-identity -v -p codesigning"):',validate:d=>d.trim().length>0?true:"Required."});if(await K(t,d=>{d.bundle=d.bundle??{},d.bundle.macOS={...d.bundle.macOS??{},signingIdentity:c};})&&i.success(`macOS signingIdentity set to "${c}" in tauri.conf.json`),o!=="identity"||!await X({message:"Set up notarization credentials too? (avoids the 'unidentified developer' warning)",default:false}))return;let g=await select({message:"Notarization method:",choices:[{name:"App Store Connect API key",value:"apiKey"},{name:"Apple ID + app-specific password",value:"appleId"}],default:"apiKey"}),u={};g==="apiKey"?(u.APPLE_API_ISSUER=await input({message:"APPLE_API_ISSUER (Issuer ID):"}),u.APPLE_API_KEY=await input({message:"APPLE_API_KEY (Key ID):"}),u.APPLE_API_KEY_PATH=await input({message:"Path to downloaded .p8 private key:",validate:d=>f.existsSync(d)?true:"File not found."})):(u.APPLE_ID=await input({message:"Apple ID email:"}),u.APPLE_PASSWORD=await password({message:"App-specific password:",mask:"*"}),u.APPLE_TEAM_ID=await input({message:"Apple Team ID:"}));let h=l.join(e,".env.signing");await M(h,u,"macOS notarization credentials \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri:build`."),await R(e,["# Code signing secrets (never commit)",".env.signing"]),i.success(`Wrote notarization credentials to ${l.relative(e,h)}`),i.info('Run "source .env.signing" before building to notarize your app.');}async function $e(e,t){if(i.step("Linux AppImage signing"),!(t===true?true:await X({message:"Configure AppImage signing (gpg) now?",default:false}))){i.info("Skipped. See: https://v2.tauri.app/distribute/sign/linux/");return}if(!T("gpg")&&!T("gpg2")){i.warn("gpg/gpg2 not found. Install it, generate a key with `gpg2 --full-gen-key`, then re-run.");return}let a=await input({message:"GPG key ID to sign with (blank = default key):"}),c={SIGN:"1",APPIMAGETOOL_SIGN_PASSPHRASE:await password({message:"GPG key passphrase:",mask:"*"})};a.trim()&&(c.SIGN_KEY=a.trim());let p=l.join(e,".env.signing");await M(p,c,"AppImage signing secrets \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri:build`."),await R(e,["# Code signing secrets (never commit)",".env.signing"]),i.success(`Wrote AppImage signing config to ${l.relative(e,p)}`),i.info('Run "source .env.signing" before building to sign the AppImage.');}async function Ae(e,t){if(i.step("iOS code signing"),!(t===true?true:await X({message:"Configure iOS code signing now?",default:false}))){i.info("Skipped. Xcode-managed automatic signing is used by default.");return}if(await select({message:"Signing method:",choices:[{name:"Automatic (Xcode-managed, recommended for local builds)",value:"automatic"},{name:"Manual (certificate + provisioning profile, for CI)",value:"manual"}],default:"automatic"})==="automatic"){i.info("Nothing to configure locally \u2014 sign in with your Apple ID in Xcode (Settings > Accounts).");return}let o=await input({message:"Path to exported certificate (.p12):",validate:s=>f.existsSync(s)?true:"File not found."}),c=await password({message:"Certificate export password:",mask:"*"}),p=await input({message:"Path to provisioning profile (.mobileprovision):",validate:s=>f.existsSync(s)?true:"File not found."});try{let s=(await y.readFile(o)).toString("base64"),g=(await y.readFile(p)).toString("base64"),u=l.join(e,".env.signing");await M(u,{IOS_CERTIFICATE:s,IOS_CERTIFICATE_PASSWORD:c,IOS_MOBILE_PROVISION:g},"iOS manual signing secrets \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri ios build`."),await R(e,["# Code signing secrets (never commit)",".env.signing"]),i.success(`Wrote iOS signing credentials to ${l.relative(e,u)}`),i.info('Run "source .env.signing" before building to sign your iOS app.');}catch(s){i.warn(`Could not read/encode certificate or profile: ${s.message}`);}}async function Pe(e,t,r,a){if(a===false){i.info("Skipping code signing setup (--nosign). See https://v2.tauri.app/distribute/sign/");return}if(!A()){i.info("Skipping code signing setup (non-interactive). See https://v2.tauri.app/distribute/sign/");return}switch(r){case "android":await ke(e,t,a);break;case "windows":await Xe(t,a);break;case "macos":await Se(e,t,a);break;case "linux":await $e(e,a);break;case "ios":await Ae(e,a);break}}async function Ce(e,t,r,a,o,c,p){i.step(`Setting up Tauri for ${t} on ${r}`),i.step("Installing Tauri dependencies...");let s=[{type:"dev",packages:["@tauri-apps/cli@latest","cross-env@latest","bini-native@latest"]},{type:"prod",packages:["@tauri-apps/api@latest"]}];for(let d of s){let m=d.type==="dev"?`${a} add -D ${d.packages.join(" ")}`:`${a} add ${d.packages.join(" ")}`;try{D(m,e);}catch{}}i.success("Tauri dependencies installed");let g=l.join(e,"src-tauri");if(f.existsSync(g))i.skip("Tauri already initialized");else {i.step("Initializing Tauri with auto-filled values...");let d=`npx @tauri-apps/cli init       --app-name "${c}"       --window-title "${c}"       --frontend-dist "../dist"       --dev-url "http://localhost:3000"       --before-dev-command "${b(a,"dev")}"       --before-build-command "${b(a,"build")}"       --force`;i.command(d);try{execSync(d,{cwd:e,stdio:"inherit",timeout:6e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh",env:{...process.env,FORCE_COLOR:"true"}}),i.success("Tauri initialized with auto-filled values");}catch{i.warn("Tauri init failed. Please run manually:"),i.plain(`  ${n.yellow}${d}${n.reset}`);return}}await xe(g,o);let u=l.join(g,"icons");if(f.existsSync(u)){i.step("Removing existing Tauri icons...");try{f.rmSync(u,{recursive:!0,force:!0}),i.success("Existing icons removed");}catch(d){i.warn(`Could not remove icons: ${d instanceof Error?d.message:String(d)}`);}}i.step("Generating Tauri icons from public/logo.png...");let h=j(a,"tauri icon public/logo.png");i.command(h);try{execSync(h,{cwd:e,stdio:"inherit",timeout:6e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),i.success("Tauri icons generated from logo.png");}catch{i.warn("Could not generate icons automatically."),i.info(`Run: ${n.cyan}${h}${n.reset}`);}if(t==="android"){let d=l.join(e,"src-tauri","gen","android");if(f.existsSync(d))i.skip("Android support already initialized");else {i.step("Initializing Android support...");let m=j(a,"tauri android init");i.command(m);try{execSync(m,{cwd:e,stdio:"inherit",timeout:12e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),i.success("Android support initialized");}catch{i.warn("Android init failed. Please run manually:"),i.plain(`  ${n.yellow}${m}${n.reset}`);}}}if(t==="ios"){let d=l.join(e,"src-tauri","gen","ios");if(f.existsSync(d))i.skip("iOS support already initialized");else {i.step("Initializing iOS support...");let m=j(a,"tauri ios init");if(i.command(m),r==="macos")try{execSync(m,{cwd:e,stdio:"inherit",timeout:12e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),i.success("iOS support initialized");}catch{i.warn(`iOS init failed. Please run manually: ${m}`);}else i.warn("iOS initialization skipped (requires macOS)");}}if(await Pe(e,g,t,p),i.step("Setup Instructions"),i.plain(we(t,r)),i.step("Checking prerequisites..."),t==="android"){T("java")||i.warn("Java JDK 17 not found (required for Android)"),process.env.ANDROID_HOME||i.warn("ANDROID_HOME not set (required for Android)"),i.step("Adding Rust Android targets");let d=["aarch64-linux-android","armv7-linux-androideabi","i686-linux-android","x86_64-linux-android"];for(let m of d){i.command(`rustup target add ${m}`);try{execSync(`rustup target list | grep ${m}`,{stdio:"pipe",shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}).toString().includes("installed")||D(`rustup target add ${m}`,e);}catch{D(`rustup target add ${m}`,e);}}i.success("Rust Android targets ready");}if(t==="ios"&&r!=="macos"&&i.warn("iOS development requires macOS with Xcode"),r==="windows"&&t==="windows"&&!T("cl")&&i.warn("Visual Studio Build Tools not found (required for Windows)"),i.success(`Tauri setup complete for ${t}`),i.step("Available Commands"),t==="android"){let d=b(a,"android"),m=b(a,"android:build");i.plain(`
-  ${n.green}${n.bold}Run on Android:${n.reset} ${n.cyan}${d}${n.reset}`),i.plain(`  ${n.green}${n.bold}Build APK:${n.reset} ${n.cyan}${m}${n.reset}`),i.plain(`  ${n.green}${n.bold}Manual Command:${n.reset} ${n.dim}npx @tauri-apps/cli android dev${n.reset}
-`),i.plain(`  ${n.yellow}${n.bold}Quick Start Guide:${n.reset}`),i.plain("  1. Start an Android emulator or connect a device with USB debugging"),i.plain(`  2. Run: ${n.green}${d}${n.reset}`),i.plain(`  3. Build APK: ${n.green}${m}${n.reset}
-`);}else {let m={windows:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},linux:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},macos:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},android:{dev:b(a,"android"),build:b(a,"android:build")},ios:{dev:b(a,"ios"),build:b(a,"ios:build")}}[t];i.plain(`
-  ${n.green}${n.bold}Development:${n.reset} ${m.dev}`),i.plain(`  ${n.green}${n.bold}Build:${n.reset} ${m.build}
+`,{mode:384}),t.success(`Wrote ${d.relative(e,m)}`),await O(e,["# Android signing (never commit)","src-tauri/gen/android/keystore.properties","*.jks","*.keystore"]),await xe(o),t.success("Android release signing configured. `pnpm android:build` will now produce a signed release.");}async function Se(e,i){if(t.step("Windows code signing"),!(i===true?true:await S({message:"Configure Windows code signing now?",default:false}))){t.info("Skipped. See: https://v2.tauri.app/distribute/sign/windows/");return}t.plain(`${n.dim}Requires a code signing certificate already imported into your Windows
+certificate store (Import-PfxCertificate). See the docs if you haven't done that yet.${n.reset}`);let a=await input({message:"Certificate thumbprint (Personal > Certificates > Details in certmgr.msc):",validate:s=>s.trim().length>0?true:"Required."}),o=await select({message:"Digest algorithm:",choices:[{name:"sha256",value:"sha256"},{name:"sha1",value:"sha1"}],default:"sha256"}),c=await input({message:"Timestamp server URL:",default:"http://timestamp.comodoca.com"});await K(e,s=>{s.bundle=s.bundle??{},s.bundle.windows={...s.bundle.windows??{},certificateThumbprint:a,digestAlgorithm:o,timestampUrl:c};})&&(t.success("Windows signing configured in tauri.conf.json"),t.info("Cross-compiling from Linux/macOS requires a custom signCommand instead \u2014 see the docs."));}async function ke(e,i,r){if(t.step("macOS code signing"),!(r===true?true:await S({message:"Configure macOS code signing now?",default:false}))){t.info("Skipped. See: https://v2.tauri.app/distribute/sign/macos/");return}let o=await select({message:"Signing method:",choices:[{name:"Ad-hoc (local testing, no Apple Developer account)",value:"adhoc"},{name:"Apple Developer signing identity (Distribution / Developer ID)",value:"identity"}],default:"adhoc"}),c=o==="adhoc"?"-":await input({message:'Signing identity (from "security find-identity -v -p codesigning"):',validate:l=>l.trim().length>0?true:"Required."});if(await K(i,l=>{l.bundle=l.bundle??{},l.bundle.macOS={...l.bundle.macOS??{},signingIdentity:c};})&&t.success(`macOS signingIdentity set to "${c}" in tauri.conf.json`),o!=="identity"||!await S({message:"Set up notarization credentials too? (avoids the 'unidentified developer' warning)",default:false}))return;let g=await select({message:"Notarization method:",choices:[{name:"App Store Connect API key",value:"apiKey"},{name:"Apple ID + app-specific password",value:"appleId"}],default:"apiKey"}),m={};g==="apiKey"?(m.APPLE_API_ISSUER=await input({message:"APPLE_API_ISSUER (Issuer ID):"}),m.APPLE_API_KEY=await input({message:"APPLE_API_KEY (Key ID):"}),m.APPLE_API_KEY_PATH=await input({message:"Path to downloaded .p8 private key:",validate:l=>f.existsSync(l)?true:"File not found."})):(m.APPLE_ID=await input({message:"Apple ID email:"}),m.APPLE_PASSWORD=await password({message:"App-specific password:",mask:"*"}),m.APPLE_TEAM_ID=await input({message:"Apple Team ID:"}));let h=d.join(e,".env.signing");await B(h,m,"macOS notarization credentials \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri:build`."),await O(e,["# Code signing secrets (never commit)",".env.signing"]),t.success(`Wrote notarization credentials to ${d.relative(e,h)}`),t.info('Run "source .env.signing" before building to notarize your app.');}async function $e(e,i){if(t.step("Linux AppImage signing"),!(i===true?true:await S({message:"Configure AppImage signing (gpg) now?",default:false}))){t.info("Skipped. See: https://v2.tauri.app/distribute/sign/linux/");return}if(!R("gpg")&&!R("gpg2")){t.warn("gpg/gpg2 not found. Install it, generate a key with `gpg2 --full-gen-key`, then re-run.");return}let a=await input({message:"GPG key ID to sign with (blank = default key):"}),c={SIGN:"1",APPIMAGETOOL_SIGN_PASSPHRASE:await password({message:"GPG key passphrase:",mask:"*"})};a.trim()&&(c.SIGN_KEY=a.trim());let p=d.join(e,".env.signing");await B(p,c,"AppImage signing secrets \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri:build`."),await O(e,["# Code signing secrets (never commit)",".env.signing"]),t.success(`Wrote AppImage signing config to ${d.relative(e,p)}`),t.info('Run "source .env.signing" before building to sign the AppImage.');}async function Ae(e,i){if(t.step("iOS code signing"),!(i===true?true:await S({message:"Configure iOS code signing now?",default:false}))){t.info("Skipped. Xcode-managed automatic signing is used by default.");return}if(await select({message:"Signing method:",choices:[{name:"Automatic (Xcode-managed, recommended for local builds)",value:"automatic"},{name:"Manual (certificate + provisioning profile, for CI)",value:"manual"}],default:"automatic"})==="automatic"){t.info("Nothing to configure locally \u2014 sign in with your Apple ID in Xcode (Settings > Accounts).");return}let o=await input({message:"Path to exported certificate (.p12):",validate:s=>f.existsSync(s)?true:"File not found."}),c=await password({message:"Certificate export password:",mask:"*"}),p=await input({message:"Path to provisioning profile (.mobileprovision):",validate:s=>f.existsSync(s)?true:"File not found."});try{let s=(await x.readFile(o)).toString("base64"),g=(await x.readFile(p)).toString("base64"),m=d.join(e,".env.signing");await B(m,{IOS_CERTIFICATE:s,IOS_CERTIFICATE_PASSWORD:c,IOS_MOBILE_PROVISION:g},"iOS manual signing secrets \u2014 never commit this file.\nRun `source .env.signing` before `pnpm tauri ios build`."),await O(e,["# Code signing secrets (never commit)",".env.signing"]),t.success(`Wrote iOS signing credentials to ${d.relative(e,m)}`),t.info('Run "source .env.signing" before building to sign your iOS app.');}catch(s){t.warn(`Could not read/encode certificate or profile: ${s.message}`);}}async function Pe(e,i,r,a){if(a===false){t.info("Skipping code signing setup (--nosign). See https://v2.tauri.app/distribute/sign/");return}if(!A()){t.info("Skipping code signing setup (non-interactive). See https://v2.tauri.app/distribute/sign/");return}switch(r){case "android":await Xe(e,i,a);break;case "windows":await Se(i,a);break;case "macos":await ke(e,i,a);break;case "linux":await $e(e,a);break;case "ios":await Ae(e,a);break}}async function Ce(e,i,r,a,o,c,p){t.step(`Setting up Tauri for ${i} on ${r}`),t.step("Installing Tauri dependencies...");let s=[{type:"dev",packages:["@tauri-apps/cli@latest","cross-env@latest","bini-native@latest"]},{type:"prod",packages:["@tauri-apps/api@latest"]}];for(let l of s){let u=l.type==="dev"?`${a} add -D ${l.packages.join(" ")}`:`${a} add ${l.packages.join(" ")}`;try{D(u,e);}catch{}}t.success("Tauri dependencies installed");let g=d.join(e,"src-tauri");if(f.existsSync(g))t.skip("Tauri already initialized");else {t.step("Initializing Tauri with auto-filled values...");let l=`npx @tauri-apps/cli init       --app-name "${c}"       --window-title "${c}"       --frontend-dist "../dist"       --dev-url "http://localhost:3000"       --before-dev-command "${b(a,"dev")}"       --before-build-command "${b(a,"build")}"       --force`;t.command(l);try{execSync(l,{cwd:e,stdio:"inherit",timeout:6e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh",env:{...process.env,FORCE_COLOR:"true"}}),t.success("Tauri initialized with auto-filled values");}catch{t.warn("Tauri init failed. Please run manually:"),t.plain(`  ${n.yellow}${l}${n.reset}`);return}}await ye(g,o);let m=d.join(g,"icons");if(f.existsSync(m)){t.step("Removing existing Tauri icons...");try{f.rmSync(m,{recursive:!0,force:!0}),t.success("Existing icons removed");}catch(l){t.warn(`Could not remove icons: ${l instanceof Error?l.message:String(l)}`);}}t.step("Generating Tauri icons from public/logo.png...");let h=j(a,"tauri icon public/logo.png");t.command(h);try{execSync(h,{cwd:e,stdio:"inherit",timeout:6e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),t.success("Tauri icons generated from logo.png");}catch{t.warn("Could not generate icons automatically."),t.info(`Run: ${n.cyan}${h}${n.reset}`);}if(i==="android"){let l=d.join(e,"src-tauri","gen","android");if(f.existsSync(l))t.skip("Android support already initialized");else {t.step("Initializing Android support...");let u=j(a,"tauri android init");t.command(u);try{execSync(u,{cwd:e,stdio:"inherit",timeout:12e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),t.success("Android support initialized");}catch{t.warn("Android init failed. Please run manually:"),t.plain(`  ${n.yellow}${u}${n.reset}`);}}}if(i==="ios"){let l=d.join(e,"src-tauri","gen","ios");if(f.existsSync(l))t.skip("iOS support already initialized");else {t.step("Initializing iOS support...");let u=j(a,"tauri ios init");if(t.command(u),r==="macos")try{execSync(u,{cwd:e,stdio:"inherit",timeout:12e4,shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}),t.success("iOS support initialized");}catch{t.warn(`iOS init failed. Please run manually: ${u}`);}else t.warn("iOS initialization skipped (requires macOS)");}}if(await Pe(e,g,i,p),t.step("Setup Instructions"),t.plain(we(i,r)),t.step("Checking prerequisites..."),i==="android"){R("java")||t.warn("Java JDK 17 not found (required for Android)"),process.env.ANDROID_HOME||t.warn("ANDROID_HOME not set (required for Android)"),t.step("Adding Rust Android targets");let l=["aarch64-linux-android","armv7-linux-androideabi","i686-linux-android","x86_64-linux-android"];for(let u of l){t.command(`rustup target add ${u}`);try{execSync(`rustup target list | grep ${u}`,{stdio:"pipe",shell:process.platform==="win32"?"cmd.exe":"/bin/sh"}).toString().includes("installed")||D(`rustup target add ${u}`,e);}catch{D(`rustup target add ${u}`,e);}}t.success("Rust Android targets ready");}if(i==="ios"&&r!=="macos"&&t.warn("iOS development requires macOS with Xcode"),r==="windows"&&i==="windows"&&!R("cl")&&t.warn("Visual Studio Build Tools not found (required for Windows)"),t.success(`Tauri setup complete for ${i}`),t.step("Available Commands"),i==="android"){let l=b(a,"android"),u=b(a,"android:build");t.plain(`
+  ${n.green}${n.bold}Run on Android:${n.reset} ${n.cyan}${l}${n.reset}`),t.plain(`  ${n.green}${n.bold}Build APK:${n.reset} ${n.cyan}${u}${n.reset}`),t.plain(`  ${n.green}${n.bold}Manual Command:${n.reset} ${n.dim}npx @tauri-apps/cli android dev${n.reset}
+`),t.plain(`  ${n.yellow}${n.bold}Quick Start Guide:${n.reset}`),t.plain("  1. Start an Android emulator or connect a device with USB debugging"),t.plain(`  2. Run: ${n.green}${l}${n.reset}`),t.plain(`  3. Build APK: ${n.green}${u}${n.reset}
+`);}else {let u={windows:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},linux:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},macos:{dev:b(a,"tauri:dev"),build:b(a,"tauri:build")},android:{dev:b(a,"android"),build:b(a,"android:build")},ios:{dev:b(a,"ios"),build:b(a,"ios:build")}}[i];t.plain(`
+  ${n.green}${n.bold}Development:${n.reset} ${u.dev}`),t.plain(`  ${n.green}${n.bold}Build:${n.reset} ${u.build}
 `);}}function Ee(){return `* { box-sizing: border-box; }
 html { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
 body { line-height: 1.5; min-height: 100vh; margin: 0; }
 #root { min-height: 100vh; }
-`}function Ne(){return `.root { 
-  height: 100vh;
+`}function Te(){return `.root { 
   width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: #ffffff; 
-  display: flex; 
-  flex-direction: column; 
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero { 
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  text-align: center; 
-  padding: 0.5rem 1rem 0.25rem;
-  gap: 0.25rem; 
-  overflow: hidden;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  gap: 1rem;
+  width: fit-content;
+  height: fit-content;
 }
 
 @media (min-width: 640px) {
-  .hero { padding: 1rem 2rem 0.5rem; gap: 0.5rem; }
-}
-
-@media (min-width: 768px) {
-  .hero { padding: 1.5rem 2rem 0.75rem; gap: 0.75rem; }
+  .content { padding: 3rem 2rem; gap: 1.5rem; }
 }
 
 .hero-logo { 
-  width: 2.5rem; 
-  height: 2.5rem; 
+  width: 4rem; 
+  height: 4rem; 
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 @media (min-width: 640px) {
-  .hero-logo { width: 3.5rem; height: 3.5rem; }
-}
-
-@media (min-width: 768px) {
-  .hero-logo { width: 4rem; height: 4rem; }
+  .hero-logo { width: 5rem; height: 5rem; }
 }
 
 .gradient-text-wrap {
@@ -367,7 +358,7 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 .title { 
-  font-size: 1.25rem; 
+  font-size: 1.875rem; 
   font-weight: 700; 
   letter-spacing: -0.04em; 
   color: #000000; 
@@ -376,54 +367,39 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 @media (min-width: 640px) {
-  .title { font-size: 1.75rem; }
-}
-
-@media (min-width: 768px) {
   .title { font-size: 2.25rem; }
 }
 
-@media (min-width: 1024px) {
-  .title { font-size: 2.75rem; }
+@media (min-width: 768px) {
+  .title { font-size: 3rem; }
 }
 
-.gradient { 
-  background: linear-gradient(to right, #22D3EE, #3B82F6); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
-  background-clip: text; 
+@media (min-width: 1024px) {
+  .title { font-size: 3.75rem; }
 }
 
 .subtitle { 
-  font-size: 0.75rem; 
+  font-size: 1rem; 
   color: #737373; 
   margin: 0; 
-  max-width: 18rem; 
-  line-height: 1.4; 
-  padding: 0 0.5rem;
+  max-width: 28rem; 
+  line-height: 1.6; 
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
-  .subtitle { font-size: 0.875rem; max-width: 22rem; padding: 0; }
-}
-
-@media (min-width: 768px) {
-  .subtitle { font-size: 1rem; max-width: 26rem; }
+  .subtitle { font-size: 1.125rem; padding: 0; }
 }
 
 .hint { 
-  font-size: 0.5rem; 
+  font-size: 0.75rem; 
   color: #a3a3a3; 
   margin: 0; 
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
-  .hint { font-size: 0.625rem; padding: 0; }
-}
-
-@media (min-width: 768px) {
-  .hint { font-size: 0.75rem; }
+  .hint { font-size: 0.875rem; padding: 0; }
 }
 
 .platforms { 
@@ -431,44 +407,25 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
   flex-wrap: wrap; 
   align-items: center; 
   justify-content: center; 
-  gap: 0.125rem; 
-  padding: 0 0.125rem;
-  max-width: 18rem;
+  gap: 0.375rem; 
+  padding: 0 0.5rem;
 }
 
 @media (min-width: 640px) {
-  .platforms { gap: 0.25rem; padding: 0; max-width: 22rem; }
-}
-
-@media (min-width: 768px) {
-  .platforms { gap: 0.375rem; max-width: 24rem; }
+  .platforms { gap: 0.5rem; padding: 0; }
 }
 
 .platform-badge { 
-  font-size: 0.45rem; 
+  font-size: 0.625rem; 
   font-weight: 500; 
   color: #737373; 
   background: #f5f5f5; 
   border: 1px solid #e5e5e5; 
   border-radius: 9999px; 
-  padding: 0.0625rem 0.375rem; 
+  padding: 0.125rem 0.625rem; 
 }
 
 @media (min-width: 640px) {
-  .platform-badge { 
-    font-size: 0.5rem; 
-    padding: 0.0625rem 0.5rem; 
-  }
-}
-
-@media (min-width: 768px) {
-  .platform-badge { 
-    font-size: 0.625rem; 
-    padding: 0.125rem 0.625rem; 
-  }
-}
-
-@media (min-width: 1024px) {
   .platform-badge { 
     font-size: 0.75rem; 
     padding: 0.25rem 0.75rem; 
@@ -477,80 +434,56 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 
 .code { 
   font-family: monospace; 
-  font-size: 0.45rem; 
+  font-size: 0.625rem; 
   background: #f5f5f5; 
   color: #404040; 
-  padding: 0.0625rem 0.25rem; 
+  padding: 0.125rem 0.375rem; 
   border-radius: 4px; 
   border: 1px solid #e5e5e5; 
 }
 
 @media (min-width: 640px) {
-  .code { font-size: 0.5rem; padding: 0.0625rem 0.375rem; }
-}
-
-@media (min-width: 768px) {
-  .code { font-size: 0.625rem; padding: 0.125rem 0.375rem; }
-}
-
-@media (min-width: 1024px) {
   .code { font-size: 0.75rem; padding: 0.2rem 0.5rem; }
 }
 
 .links-section { 
-  flex-shrink: 0;
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 1rem 3rem; 
+  width: 100%;
 }
 
 @media (min-width: 640px) {
-  .links-section { padding: 0 1rem 1rem; }
-}
-
-@media (min-width: 768px) {
-  .links-section { padding: 0 1.5rem 1.5rem; }
+  .links-section { padding: 0 2rem 4rem; }
 }
 
 .grid { 
   display: grid; 
   grid-template-columns: repeat(2, 1fr); 
-  gap: 0.375rem; 
-  max-width: 22rem; 
+  gap: 0.75rem; 
+  max-width: 48rem; 
   margin: 0 auto; 
 }
 
 @media (min-width: 640px) {
-  .grid { gap: 0.5rem; max-width: 30rem; }
+  .grid { gap: 1rem; }
 }
 
 @media (min-width: 768px) {
-  .grid { grid-template-columns: repeat(4, 1fr); gap: 0.75rem; max-width: 38rem; }
+  .grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 }
 
 .card { 
   display: flex; 
   flex-direction: column; 
-  align-items: center;
-  justify-content: center;
-  gap: 0.0625rem; 
-  padding: 0.375rem 0.125rem; 
-  border-radius: 6px; 
+  gap: 0.375rem; 
+  padding: 0.75rem; 
+  border-radius: 10px; 
   border: 1px solid #e5e5e5; 
   text-decoration: none; 
   transition: border-color 0.15s, background 0.15s; 
-  min-height: 2rem;
 }
 
 @media (min-width: 640px) {
-  .card { 
-    gap: 0.125rem; 
-    padding: 0.5rem 0.5rem; 
-    border-radius: 8px; 
-    min-height: 2.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .card { gap: 0.25rem; padding: 0.75rem; border-radius: 10px; min-height: 3rem; }
+  .card { gap: 0.5rem; padding: 1.25rem; }
 }
 
 .card:hover { 
@@ -559,44 +492,22 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 .card-label { 
-  font-size: 0.5rem; 
+  font-size: 0.75rem; 
   font-weight: 600; 
   color: #000000; 
-  text-align: center;
 }
 
 @media (min-width: 640px) {
-  .card-label { font-size: 0.625rem; }
-}
-
-@media (min-width: 768px) {
-  .card-label { font-size: 0.75rem; }
-}
-
-@media (min-width: 1024px) {
   .card-label { font-size: 0.875rem; }
 }
 
 .card-desc { 
-  font-size: 0.4rem; 
+  font-size: 0.625rem; 
   color: #737373; 
-  line-height: 1.2; 
-  text-align: center;
-  display: none;
+  line-height: 1.5; 
 }
 
 @media (min-width: 640px) {
-  .card-desc { 
-    font-size: 0.5rem; 
-    display: block;
-  }
-}
-
-@media (min-width: 768px) {
-  .card-desc { font-size: 0.625rem; }
-}
-
-@media (min-width: 1024px) {
   .card-desc { font-size: 0.75rem; }
 }
 
@@ -612,49 +523,40 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
   .card-label { color: #ffffff; }
   .card-desc { color: #737373; }
 }
-`}function Te(){return `.root { 
-  height: 100vh;
+`}function Re(){return `.root { 
   width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: #ffffff; 
-  display: flex; 
-  flex-direction: column; 
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero { 
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  text-align: center; 
-  padding: 0.5rem 1rem 0.25rem;
-  gap: 0.25rem; 
-  overflow: hidden;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  gap: 1rem;
+  width: fit-content;
+  height: fit-content;
 }
 
 @media (min-width: 640px) {
-  .hero { padding: 1rem 2rem 0.5rem; gap: 0.5rem; }
-}
-
-@media (min-width: 768px) {
-  .hero { padding: 1.5rem 2rem 0.75rem; gap: 0.75rem; }
+  .content { padding: 3rem 2rem; gap: 1.5rem; }
 }
 
 .heroLogo { 
-  width: 2.5rem; 
-  height: 2.5rem; 
+  width: 4rem; 
+  height: 4rem; 
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 @media (min-width: 640px) {
-  .heroLogo { width: 3.5rem; height: 3.5rem; }
-}
-
-@media (min-width: 768px) {
-  .heroLogo { width: 4rem; height: 4rem; }
+  .heroLogo { width: 5rem; height: 5rem; }
 }
 
 .gradientTextWrap {
@@ -688,7 +590,7 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 .title { 
-  font-size: 1.25rem; 
+  font-size: 1.875rem; 
   font-weight: 700; 
   letter-spacing: -0.04em; 
   color: #000000; 
@@ -697,54 +599,39 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 @media (min-width: 640px) {
-  .title { font-size: 1.75rem; }
-}
-
-@media (min-width: 768px) {
   .title { font-size: 2.25rem; }
 }
 
-@media (min-width: 1024px) {
-  .title { font-size: 2.75rem; }
+@media (min-width: 768px) {
+  .title { font-size: 3rem; }
 }
 
-.gradient { 
-  background: linear-gradient(to right, #22D3EE, #3B82F6); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
-  background-clip: text; 
+@media (min-width: 1024px) {
+  .title { font-size: 3.75rem; }
 }
 
 .subtitle { 
-  font-size: 0.75rem; 
+  font-size: 1rem; 
   color: #737373; 
   margin: 0; 
-  max-width: 18rem; 
-  line-height: 1.4; 
-  padding: 0 0.5rem;
+  max-width: 28rem; 
+  line-height: 1.6; 
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
-  .subtitle { font-size: 0.875rem; max-width: 22rem; padding: 0; }
-}
-
-@media (min-width: 768px) {
-  .subtitle { font-size: 1rem; max-width: 26rem; }
+  .subtitle { font-size: 1.125rem; padding: 0; }
 }
 
 .hint { 
-  font-size: 0.5rem; 
+  font-size: 0.75rem; 
   color: #a3a3a3; 
   margin: 0; 
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
-  .hint { font-size: 0.625rem; padding: 0; }
-}
-
-@media (min-width: 768px) {
-  .hint { font-size: 0.75rem; }
+  .hint { font-size: 0.875rem; padding: 0; }
 }
 
 .platforms { 
@@ -752,44 +639,25 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
   flex-wrap: wrap; 
   align-items: center; 
   justify-content: center; 
-  gap: 0.125rem; 
-  padding: 0 0.125rem;
-  max-width: 18rem;
+  gap: 0.375rem; 
+  padding: 0 0.5rem;
 }
 
 @media (min-width: 640px) {
-  .platforms { gap: 0.25rem; padding: 0; max-width: 22rem; }
-}
-
-@media (min-width: 768px) {
-  .platforms { gap: 0.375rem; max-width: 24rem; }
+  .platforms { gap: 0.5rem; padding: 0; }
 }
 
 .platformBadge { 
-  font-size: 0.45rem; 
+  font-size: 0.625rem; 
   font-weight: 500; 
   color: #737373; 
   background: #f5f5f5; 
   border: 1px solid #e5e5e5; 
   border-radius: 9999px; 
-  padding: 0.0625rem 0.375rem; 
+  padding: 0.125rem 0.625rem; 
 }
 
 @media (min-width: 640px) {
-  .platformBadge { 
-    font-size: 0.5rem; 
-    padding: 0.0625rem 0.5rem; 
-  }
-}
-
-@media (min-width: 768px) {
-  .platformBadge { 
-    font-size: 0.625rem; 
-    padding: 0.125rem 0.625rem; 
-  }
-}
-
-@media (min-width: 1024px) {
   .platformBadge { 
     font-size: 0.75rem; 
     padding: 0.25rem 0.75rem; 
@@ -798,80 +666,56 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 
 .code { 
   font-family: monospace; 
-  font-size: 0.45rem; 
+  font-size: 0.625rem; 
   background: #f5f5f5; 
   color: #404040; 
-  padding: 0.0625rem 0.25rem; 
+  padding: 0.125rem 0.375rem; 
   border-radius: 4px; 
   border: 1px solid #e5e5e5; 
 }
 
 @media (min-width: 640px) {
-  .code { font-size: 0.5rem; padding: 0.0625rem 0.375rem; }
-}
-
-@media (min-width: 768px) {
-  .code { font-size: 0.625rem; padding: 0.125rem 0.375rem; }
-}
-
-@media (min-width: 1024px) {
   .code { font-size: 0.75rem; padding: 0.2rem 0.5rem; }
 }
 
 .linksSection { 
-  flex-shrink: 0;
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 1rem 3rem; 
+  width: 100%;
 }
 
 @media (min-width: 640px) {
-  .linksSection { padding: 0 1rem 1rem; }
-}
-
-@media (min-width: 768px) {
-  .linksSection { padding: 0 1.5rem 1.5rem; }
+  .linksSection { padding: 0 2rem 4rem; }
 }
 
 .grid { 
   display: grid; 
   grid-template-columns: repeat(2, 1fr); 
-  gap: 0.375rem; 
-  max-width: 22rem; 
+  gap: 0.75rem; 
+  max-width: 48rem; 
   margin: 0 auto; 
 }
 
 @media (min-width: 640px) {
-  .grid { gap: 0.5rem; max-width: 30rem; }
+  .grid { gap: 1rem; }
 }
 
 @media (min-width: 768px) {
-  .grid { grid-template-columns: repeat(4, 1fr); gap: 0.75rem; max-width: 38rem; }
+  .grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 }
 
 .card { 
   display: flex; 
   flex-direction: column; 
-  align-items: center;
-  justify-content: center;
-  gap: 0.0625rem; 
-  padding: 0.375rem 0.125rem; 
-  border-radius: 6px; 
+  gap: 0.375rem; 
+  padding: 0.75rem; 
+  border-radius: 10px; 
   border: 1px solid #e5e5e5; 
   text-decoration: none; 
   transition: border-color 0.15s, background 0.15s; 
-  min-height: 2rem;
 }
 
 @media (min-width: 640px) {
-  .card { 
-    gap: 0.125rem; 
-    padding: 0.5rem 0.5rem; 
-    border-radius: 8px; 
-    min-height: 2.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .card { gap: 0.25rem; padding: 0.75rem; border-radius: 10px; min-height: 3rem; }
+  .card { gap: 0.5rem; padding: 1.25rem; }
 }
 
 .card:hover { 
@@ -880,44 +724,22 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
 }
 
 .cardLabel { 
-  font-size: 0.5rem; 
+  font-size: 0.75rem; 
   font-weight: 600; 
   color: #000000; 
-  text-align: center;
 }
 
 @media (min-width: 640px) {
-  .cardLabel { font-size: 0.625rem; }
-}
-
-@media (min-width: 768px) {
-  .cardLabel { font-size: 0.75rem; }
-}
-
-@media (min-width: 1024px) {
   .cardLabel { font-size: 0.875rem; }
 }
 
 .cardDesc { 
-  font-size: 0.4rem; 
+  font-size: 0.625rem; 
   color: #737373; 
-  line-height: 1.2; 
-  text-align: center;
-  display: none;
+  line-height: 1.5; 
 }
 
 @media (min-width: 640px) {
-  .cardDesc { 
-    font-size: 0.5rem; 
-    display: block;
-  }
-}
-
-@media (min-width: 768px) {
-  .cardDesc { font-size: 0.625rem; }
-}
-
-@media (min-width: 1024px) {
   .cardDesc { font-size: 0.75rem; }
 }
 
@@ -933,17 +755,17 @@ body { line-height: 1.5; min-height: 100vh; margin: 0; }
   .cardLabel { color: #ffffff; }
   .cardDesc { color: #737373; }
 }
-`}function Oe(e){let t=Ee();return e==="Tailwind"?`@import "tailwindcss";
+`}function Ne(e){let i=Ee();return e==="Tailwind"?`@import "tailwindcss";
 
-${t}`:e==="CSS Modules"?t:t+`
-`+Ne()}function Re(e,t,r,a){let o=a!=="web",c={react:"latest","react-dom":"latest","react-router-dom":"latest",hono:"latest","bini-router":"latest","bini-overlay":"latest","bini-server":"latest"},p={"@vitejs/plugin-react":"latest",vite:"latest",oxlint:"latest",oxfmt:"latest","bini-env":"latest","bini-export":"latest"};o&&(p["@tauri-apps/cli"]="latest",p["cross-env"]="latest",p["bini-native"]="latest",c["@tauri-apps/api"]="latest"),t&&Object.assign(p,{"@types/react":"latest","@types/react-dom":"latest","@types/node":"latest",typescript:"latest"}),r==="Tailwind"&&Object.assign(p,{tailwindcss:"latest","@tailwindcss/vite":"latest"});let s={dev:o?"vite":"vite --host --open",build:t?"tsc --noEmit && vite build":"vite build",export:"vite build --mode export",start:"bini-server",preview:"vite preview --host --open","type-check":t?"tsc --noEmit":"echo 'TypeScript not enabled'",lint:"oxlint src",format:"oxfmt src",check:t?"oxlint src && oxfmt src && tsc --noEmit":"oxlint src && oxfmt src"};return o&&(s.predev="npx @tauri-apps/cli icon public/logo.png",s.prebuild="npx @tauri-apps/cli icon public/logo.png",s["tauri:dev"]="cross-env TAURI=true tauri dev",s["tauri:build"]="cross-env TAURI=true tauri build",s["tauri:icon"]="npx @tauri-apps/cli icon public/logo.png",s.android="npx @tauri-apps/cli android dev",s["android:dev"]="npx @tauri-apps/cli android dev",s["android:build"]="npx @tauri-apps/cli android build",s.ios="npx @tauri-apps/cli ios dev",s["ios:dev"]="npx @tauri-apps/cli ios dev",s["ios:build"]="npx @tauri-apps/cli ios build"),a==="ios"&&(s.tauri="npx @tauri-apps/cli"),{name:e,type:"module",version:"1.0.0",scripts:s,dependencies:c,devDependencies:p}}var B=`[
+${i}`:e==="CSS Modules"?i:i+`
+`+Te()}function Oe(e,i,r,a){let o=a!=="web",c={react:"latest","react-dom":"latest","react-router-dom":"latest",hono:"latest","bini-router":"latest","bini-overlay":"latest","bini-server":"latest"},p={"@vitejs/plugin-react":"latest",vite:"latest",oxlint:"latest",oxfmt:"latest","bini-env":"latest","bini-export":"latest"};o&&(p["@tauri-apps/cli"]="latest",p["cross-env"]="latest",p["bini-native"]="latest",c["@tauri-apps/api"]="latest"),i&&Object.assign(p,{"@types/react":"latest","@types/react-dom":"latest","@types/node":"latest",typescript:"latest"}),r==="Tailwind"&&Object.assign(p,{tailwindcss:"latest","@tailwindcss/vite":"latest"});let s={dev:o?"vite":"vite --host --open",build:i?"tsc --noEmit && vite build":"vite build",export:"vite build --mode export",start:"bini-server",preview:"vite preview --host --open","type-check":i?"tsc --noEmit":"echo 'TypeScript not enabled'",lint:"oxlint src",format:"oxfmt src",check:i?"oxlint src && oxfmt src && tsc --noEmit":"oxlint src && oxfmt src"};return o&&(s.predev="npx @tauri-apps/cli icon public/logo.png",s.prebuild="npx @tauri-apps/cli icon public/logo.png",s["tauri:dev"]="cross-env TAURI=true tauri dev",s["tauri:build"]="cross-env TAURI=true tauri build",s["tauri:icon"]="npx @tauri-apps/cli icon public/logo.png",s.android="npx @tauri-apps/cli android dev",s["android:dev"]="npx @tauri-apps/cli android dev",s["android:build"]="npx @tauri-apps/cli android build",s.ios="npx @tauri-apps/cli ios dev",s["ios:dev"]="npx @tauri-apps/cli ios dev",s["ios:build"]="npx @tauri-apps/cli ios build"),a==="ios"&&(s.tauri="npx @tauri-apps/cli"),{name:e,type:"module",version:"1.0.0",scripts:s,dependencies:c,devDependencies:p}}var M=`[
   { label: 'Docs',     desc: 'Read the documentation',   href: 'https://bini.js.org'                           },
   { label: 'Examples', desc: 'Browse starter templates', href: 'https://github.com/Binidu01/bini-examples'     },
   { label: 'npm',      desc: 'View on npm registry',     href: 'https://www.npmjs.com/package/create-bini-app' },
   { label: 'GitHub',   desc: 'Star us on GitHub',        href: 'https://github.com/Binidu01'                   },
-]`,F="['Web', 'Windows', 'macOS', 'Linux', 'Android', 'iOS']";function Ie(e,t){let r=e==="tsx";return t==="Tailwind"?`import React from 'react';
+]`,F="['Web', 'Windows', 'macOS', 'Linux', 'Android', 'iOS']";function Ie(e,i){let r=e==="tsx";return i==="Tailwind"?`import React, { useEffect, useRef, useState } from 'react';
 
-const links = ${B};
+const links = ${M};
 const platforms = ${F};
 
 ${r?`interface GradientTextProps {
@@ -990,66 +812,115 @@ ${r?`interface GradientTextProps {
 };
 
 export default function Home() {
-  return (
-    <div className="h-screen w-screen overflow-hidden bg-white dark:bg-black flex flex-col">
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-8 pt-4 pb-2 gap-1 sm:gap-3 overflow-hidden">
-        <img 
-          src="/logo.png" 
-          alt="Bini.js Logo" 
-          className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain flex-shrink-0"
-        />
-        
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-black dark:text-white leading-tight">
-          Welcome to{' '}
-          <GradientText className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">
-            Bini.js
-          </GradientText>
-        </h1>
-        
-        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-xs sm:max-w-md px-2">
-          Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
-        </p>
-        
-        <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 px-2 max-w-xs sm:max-w-md">
-          {platforms.map((p) => (
-            <span key={p}
-              className="text-[8px] sm:text-[10px] md:text-xs font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full px-1.5 sm:px-2.5 py-0.5">
-              {p}
-            </span>
-          ))}
-        </div>
-        
-        <p className="text-[9px] sm:text-xs text-neutral-400 dark:text-neutral-500 px-2">
-          Edit{' '}
-          <code className="font-mono text-[8px] sm:text-[10px] bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-800">
-            src/app/page.${e}
-          </code>
-        </p>
-      </main>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const fitContent = () => {
+      if (!containerRef.current) return;
       
-      <section className="flex-shrink-0 px-2 sm:px-4 pb-3 sm:pb-5 pt-0">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 max-w-md sm:max-w-2xl mx-auto">
-          {links.map((l) => (
-            <a 
-              key={l.label} 
-              href={l.href} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center gap-0 p-1.5 sm:p-2.5 md:p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-950 transition-colors min-h-[36px] sm:min-h-[44px]"
-            >
-              <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-black dark:text-white">{l.label} \u2197</span>
-              <span className="text-[7px] sm:text-[9px] md:text-[10px] text-neutral-500 dark:text-neutral-400 leading-tight text-center hidden sm:block">{l.desc}</span>
-            </a>
-          ))}
+      const container = containerRef.current;
+      const content = container.firstElementChild as HTMLElement;
+      if (!content) return;
+      
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      const contentWidth = content.scrollWidth;
+      const contentHeight = content.scrollHeight;
+      
+      const scaleX = viewportWidth / contentWidth;
+      const scaleY = viewportHeight / contentHeight;
+      const newScale = Math.min(scaleX, scaleY, 1);
+      
+      setScale(newScale);
+    };
+
+    fitContent();
+    window.addEventListener('resize', fitContent);
+    
+    const timeout = setTimeout(fitContent, 100);
+    
+    return () => {
+      window.removeEventListener('resize', fitContent);
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="w-screen h-screen overflow-hidden bg-white dark:bg-black flex items-center justify-center"
+    >
+      <div
+        style={{
+          transform: \`scale(\${scale})\`,
+          transformOrigin: 'center center',
+          width: 'fit-content',
+          height: 'fit-content',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+        }}
+      >
+        <div className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-8 py-8 sm:py-12 gap-4 sm:gap-6">
+          <img 
+            src="/logo.png" 
+            alt="Bini.js Logo" 
+            className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+          />
+          
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black dark:text-white">
+            Welcome to{' '}
+            <GradientText className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              Bini.js
+            </GradientText>
+          </h1>
+          
+          <p className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 max-w-md px-4 sm:px-0">
+            Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
+          </p>
+          
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-2">
+            {platforms.map((p) => (
+              <span key={p}
+                className="text-[10px] sm:text-xs font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1">
+                {p}
+              </span>
+            ))}
+          </div>
+          
+          <p className="text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 px-4">
+            Get started by editing{' '}
+            <code className="font-mono text-[10px] sm:text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-800">
+              src/app/page.${e}
+            </code>
+          </p>
+          
+          <section className="px-4 sm:px-8 pb-8 sm:pb-12 w-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
+              {links.map((l) => (
+                <a 
+                  key={l.label} 
+                  href={l.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-950 transition-colors"
+                >
+                  <span className="text-xs sm:text-sm font-semibold text-black dark:text-white">{l.label} \u2197</span>
+                  <span className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">{l.desc}</span>
+                </a>
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
-`:t==="CSS Modules"?`import React from 'react';
+`:i==="CSS Modules"?`import React, { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 
-const links = ${B};
+const links = ${M};
 const platforms = ${F};
 
 ${r?`interface GradientTextProps {
@@ -1066,47 +937,96 @@ ${r?`interface GradientTextProps {
 };
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const fitContent = () => {
+      if (!containerRef.current) return;
+      
+      const container = containerRef.current;
+      const content = container.firstElementChild as HTMLElement;
+      if (!content) return;
+      
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      const contentWidth = content.scrollWidth;
+      const contentHeight = content.scrollHeight;
+      
+      const scaleX = viewportWidth / contentWidth;
+      const scaleY = viewportHeight / contentHeight;
+      const newScale = Math.min(scaleX, scaleY, 1);
+      
+      setScale(newScale);
+    };
+
+    fitContent();
+    window.addEventListener('resize', fitContent);
+    
+    const timeout = setTimeout(fitContent, 100);
+    
+    return () => {
+      window.removeEventListener('resize', fitContent);
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
-    <div className={styles.root}>
-      <main className={styles.hero}>
-        <img src="/logo.png" alt="Bini.js Logo" className={styles.heroLogo} />
+    <div 
+      ref={containerRef}
+      className={styles.root}
+    >
+      <div
+        style={{
+          transform: \`scale(\${scale})\`,
+          transformOrigin: 'center center',
+          width: 'fit-content',
+          height: 'fit-content',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+        }}
+      >
+        <div className={styles.content}>
+          <img src="/logo.png" alt="Bini.js Logo" className={styles.heroLogo} />
 
-        <h1 className={styles.title}>
-          Welcome to <GradientText>Bini.js</GradientText>
-        </h1>
+          <h1 className={styles.title}>
+            Welcome to <GradientText>Bini.js</GradientText>
+          </h1>
 
-        <p className={styles.subtitle}>
-          Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
-        </p>
+          <p className={styles.subtitle}>
+            Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
+          </p>
 
-        <div className={styles.platforms}>
-          {platforms.map((p) => (
-            <span key={p} className={styles.platformBadge}>{p}</span>
-          ))}
+          <div className={styles.platforms}>
+            {platforms.map((p) => (
+              <span key={p} className={styles.platformBadge}>{p}</span>
+            ))}
+          </div>
+
+          <p className={styles.hint}>
+            Get started by editing <code className={styles.code}>src/app/page.${e}</code>
+          </p>
+
+          <section className={styles.linksSection}>
+            <div className={styles.grid}>
+              {links.map((l) => (
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className={styles.card}>
+                  <span className={styles.cardLabel}>{l.label} \u2197</span>
+                  <span className={styles.cardDesc}>{l.desc}</span>
+                </a>
+              ))}
+            </div>
+          </section>
         </div>
-
-        <p className={styles.hint}>
-          Edit <code className={styles.code}>src/app/page.${e}</code>
-        </p>
-      </main>
-
-      <section className={styles.linksSection}>
-        <div className={styles.grid}>
-          {links.map((l) => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className={styles.card}>
-              <span className={styles.cardLabel}>{l.label} \u2197</span>
-              <span className={styles.cardDesc}>{l.desc}</span>
-            </a>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
-`:`import React from 'react';
+`:`import React, { useEffect, useRef, useState } from 'react';
 import './globals.css';
 
-const links = ${B};
+const links = ${M};
 const platforms = ${F};
 
 ${r?`interface GradientTextProps {
@@ -1123,44 +1043,93 @@ ${r?`interface GradientTextProps {
 };
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const fitContent = () => {
+      if (!containerRef.current) return;
+      
+      const container = containerRef.current;
+      const content = container.firstElementChild as HTMLElement;
+      if (!content) return;
+      
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      const contentWidth = content.scrollWidth;
+      const contentHeight = content.scrollHeight;
+      
+      const scaleX = viewportWidth / contentWidth;
+      const scaleY = viewportHeight / contentHeight;
+      const newScale = Math.min(scaleX, scaleY, 1);
+      
+      setScale(newScale);
+    };
+
+    fitContent();
+    window.addEventListener('resize', fitContent);
+    
+    const timeout = setTimeout(fitContent, 100);
+    
+    return () => {
+      window.removeEventListener('resize', fitContent);
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
-    <div className="root">
-      <main className="hero">
-        <img src="/logo.png" alt="Bini.js Logo" className="hero-logo" />
+    <div 
+      ref={containerRef}
+      className="root"
+    >
+      <div
+        style={{
+          transform: \`scale(\${scale})\`,
+          transformOrigin: 'center center',
+          width: 'fit-content',
+          height: 'fit-content',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+        }}
+      >
+        <div className="content">
+          <img src="/logo.png" alt="Bini.js Logo" className="hero-logo" />
 
-        <h1 className="title">
-          Welcome to <GradientText>Bini.js</GradientText>
-        </h1>
+          <h1 className="title">
+            Welcome to <GradientText>Bini.js</GradientText>
+          </h1>
 
-        <p className="subtitle">
-          Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
-        </p>
+          <p className="subtitle">
+            Build full-stack React apps that run on web, desktop, and mobile \u2014 powered by Tauri.
+          </p>
 
-        <div className="platforms">
-          {platforms.map((p) => (
-            <span key={p} className="platform-badge">{p}</span>
-          ))}
+          <div className="platforms">
+            {platforms.map((p) => (
+              <span key={p} className="platform-badge">{p}</span>
+            ))}
+          </div>
+
+          <p className="hint">
+            Get started by editing <code className="code">src/app/page.${e}</code>
+          </p>
+
+          <section className="links-section">
+            <div className="grid">
+              {links.map((l) => (
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="card">
+                  <span className="card-label">{l.label} \u2197</span>
+                  <span className="card-desc">{l.desc}</span>
+                </a>
+              ))}
+            </div>
+          </section>
         </div>
-
-        <p className="hint">
-          Edit <code className="code">src/app/page.${e}</code>
-        </p>
-      </main>
-
-      <section className="links-section">
-        <div className="grid">
-          {links.map((l) => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="card">
-              <span className="card-label">{l.label} \u2197</span>
-              <span className="card-desc">{l.desc}</span>
-            </a>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
-`}async function De(e,t,r,a,o){let c=l.join(e,"src/app"),p=r?"{ children }: { children: React.ReactNode }":"{ children }",s=`import React from 'react';
+`}async function De(e,i,r,a,o){let c=d.join(e,"src/app"),p=r?"{ children }: { children: React.ReactNode }":"{ children }",s=`import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 ${o?`import { openUrl } from '@tauri-apps/plugin-opener';
@@ -1221,7 +1190,7 @@ if (isTauri) {
 `:""}
 
 createRoot(container).render(<App />);
-`;await Promise.all([x(l.join(e,"src",`main.${t}`),s),x(l.join(c,`layout.${t}`),`import React from 'react';
+`;await Promise.all([y(d.join(e,"src",`main.${i}`),s),y(d.join(c,`layout.${i}`),`import React from 'react';
 import './globals.css';
 
 export const metadata = {
@@ -1250,7 +1219,7 @@ export const metadata = {
 export default function RootLayout(${p}) {
   return <React.Fragment>{children}</React.Fragment>;
 }
-`),x(l.join(c,`page.${t}`),Ie(t,a))]);}async function je(e,t){await x(l.join(e,`src/app/api/hello.${t}`),`import { Hono } from 'hono'
+`),y(d.join(c,`page.${i}`),Ie(i,a))]);}async function je(e,i){await y(d.join(e,`src/app/api/hello.${i}`),`import { Hono } from 'hono'
 
 const app = new Hono()
 
@@ -1263,7 +1232,7 @@ app.all('/hello', (c) => {
 })
 
 export default app
-`);}function Be(e,t,r,a,o,c){return `# ${e}
+`);}function Me(e,i,r,a,o,c){return `# ${e}
 
 A **Bini.js** application \u2014 build full-stack React applications for **web, desktop, and mobile** using a single unified development experience.
 
@@ -1652,7 +1621,7 @@ The Bini.js ecosystem:
 - **bini-overlay** \u2014 development tooling
 - **Oxlint** \u2014 fast Rust-based linting
 - **Oxfmt** \u2014 Prettier-compatible formatter
-${t?`
+${i?`
 - **TypeScript** \u2014 static type safety`:""}
 
 ---
@@ -1663,7 +1632,7 @@ https://bini.js.org
 
 ---
 
-Built with **Bini.js v${H}**`}async function Fe(e){await x(l.join(e,"tsconfig.json"),JSON.stringify({compilerOptions:{target:"ES2022",lib:["ES2022","DOM","DOM.Iterable"],module:"ESNext",skipLibCheck:true,moduleResolution:"bundler",allowImportingTsExtensions:true,allowArbitraryExtensions:true,resolveJsonModule:true,isolatedModules:true,noEmit:true,jsx:"react-jsx",strict:true,paths:{"@/*":["./src/*"]},forceConsistentCasingInFileNames:true,types:["vite/client"]},include:["src"],exclude:["node_modules","dist"]},null,2));}async function Me(e){await x(l.join(e,".oxlintrc.json"),JSON.stringify({$schema:"./node_modules/oxlint/configuration_schema.json",plugins:["react"],env:{browser:true,es2022:true},ignorePatterns:["dist","node_modules"]},null,2)),await x(l.join(e,".oxfmtrc.json"),JSON.stringify({semi:false,singleQuote:true,tabWidth:2,printWidth:100,trailingComma:"es5",sortImports:true,sortTailwindcssClasses:true},null,2));}function ze(e){return `node_modules/
+Built with **Bini.js v${U}**`}async function Fe(e){await y(d.join(e,"tsconfig.json"),JSON.stringify({compilerOptions:{target:"ES2022",lib:["ES2022","DOM","DOM.Iterable"],module:"ESNext",skipLibCheck:true,moduleResolution:"bundler",allowImportingTsExtensions:true,allowArbitraryExtensions:true,resolveJsonModule:true,isolatedModules:true,noEmit:true,jsx:"react-jsx",strict:true,paths:{"@/*":["./src/*"]},forceConsistentCasingInFileNames:true,types:["vite/client"]},include:["src"],exclude:["node_modules","dist"]},null,2));}async function Be(e){await y(d.join(e,".oxlintrc.json"),JSON.stringify({$schema:"./node_modules/oxlint/configuration_schema.json",plugins:["react"],env:{browser:true,es2022:true},ignorePatterns:["dist","node_modules"]},null,2)),await y(d.join(e,".oxfmtrc.json"),JSON.stringify({semi:false,singleQuote:true,tabWidth:2,printWidth:100,trailingComma:"es5",sortImports:true,sortTailwindcssClasses:true},null,2));}function We(e){return `node_modules/
 dist/
 .env
 .env.local
@@ -1673,7 +1642,7 @@ Thumbs.db
 *.log
 
 netlify/edge-functions/api.${e}
-`}async function _e(e,t,r,a){let o=l.join(process.cwd(),e),c=l.join(o,"public");f.existsSync(o)&&!r.force&&(i.error(`Directory "${e}" already exists. Use --force to overwrite.`),w(1)),r.force&&f.existsSync(o)&&(i.warn(`Removing existing directory: ${n.dim}${o}${n.reset}`),de(o)),i.info(`Creating project in ${n.cyan}${o}${n.reset}`),re(100);let p=me(r,t),s=ue(p);U(l.join(o,"src/app/api")),U(c),i.info("Scaffolding project files");let g=t.platform!=="web",u=g?t.platform:null,h=Re(e,p,t.styling,t.platform);await Promise.all([fe(c),he(o),x(l.join(o,"index.html"),`<!DOCTYPE html>
+`}async function _e(e,i,r,a){let o=d.join(process.cwd(),e),c=d.join(o,"public");f.existsSync(o)&&!r.force&&(t.error(`Directory "${e}" already exists. Use --force to overwrite.`),w(1)),r.force&&f.existsSync(o)&&(t.warn(`Removing existing directory: ${n.dim}${o}${n.reset}`),le(o)),t.info(`Creating project in ${n.cyan}${o}${n.reset}`),re(100);let p=ue(r,i),s=me(p);H(d.join(o,"src/app/api")),H(c),t.info("Scaffolding project files");let g=i.platform!=="web",m=g?i.platform:null,h=Oe(e,p,i.styling,i.platform);await Promise.all([fe(c),he(o),y(d.join(o,"index.html"),`<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1684,10 +1653,10 @@ netlify/edge-functions/api.${e}
     <script type="module" src="/src/main.${s.main}"></script>
   </body>
 </html>
-`),De(o,s.main,p,t.styling,g),t.styling==="CSS Modules"?x(l.join(o,"src/app/page.module.css"),Te()):Promise.resolve(),x(l.join(o,"src/app/globals.css"),Oe(t.styling)),je(o,s.api),x(l.join(o,".gitignore"),ze(s.api)),x(l.join(o,"package.json"),JSON.stringify(h,null,2)),be(o,p,s.config,t.styling,g),p?Fe(o):Promise.resolve(),Me(o)]),i.success(`Generated ${n.green}${p?"TypeScript":"JavaScript"}${n.reset} project with ${n.green}${t.styling}${n.reset} styling`);let{pm:d,failed:m}=ce(r.packageManager);m||i.info(r.packageManager?`Package manager: ${n.cyan}${d}${n.reset} (forced via --${d})`:`Package manager: ${n.cyan}${d}${n.reset}`),g&&u&&await Ce(o,u,a,d,e,t.appName,r.sign);let k=false;r.install===true?k=true:r.install===false?k=false:A()&&(k=await X({message:"Install dependencies now?",default:true}));let S=false;m||(S=await pe(o,d,k)),await x(l.join(o,"README.md"),Be(e,p,s,d)),i.plain(`
+`),De(o,s.main,p,i.styling,g),i.styling==="CSS Modules"?y(d.join(o,"src/app/page.module.css"),Re()):Promise.resolve(),y(d.join(o,"src/app/globals.css"),Ne(i.styling)),je(o,s.api),y(d.join(o,".gitignore"),We(s.api)),y(d.join(o,"package.json"),JSON.stringify(h,null,2)),be(o,p,s.config,i.styling,g),p?Fe(o):Promise.resolve(),Be(o)]),t.success(`Generated ${n.green}${p?"TypeScript":"JavaScript"}${n.reset} project with ${n.green}${i.styling}${n.reset} styling`);let{pm:l,failed:u}=ce(r.packageManager);u||t.info(r.packageManager?`Package manager: ${n.cyan}${l}${n.reset} (forced via --${l})`:`Package manager: ${n.cyan}${l}${n.reset}`),g&&m&&await Ce(o,m,a,l,e,i.appName,r.sign);let X=false;r.install===true?X=true:r.install===false?X=false:A()&&(X=await S({message:"Install dependencies now?",default:true}));let k=false;u||(k=await pe(o,l,X)),await y(d.join(o,"README.md"),Me(e,p,s,l)),t.plain(`
 ${n.green}${n.bold}OK${n.reset} ${n.bold}Project created!${n.reset} ${n.cyan}${e}${n.reset} at ${n.dim}${o}${n.reset}
-`),m&&i.warn(`README uses "npm" as placeholder \u2014 update manually if needed.
-`),i.success("Get started:"),i.plain(`
-  ${n.green}cd ${e}${n.reset}`),!S&&!m&&i.plain(`  ${n.green}${d} install${n.reset}`),g&&u?u==="android"?(i.plain(`
-${n.bold}${n.cyan}Android Commands:${n.reset}`),i.plain(`  ${n.green}${b(d,"android")}${n.reset}          # Run on Android emulator/device`),i.plain(`  ${n.green}${b(d,"android:build")}${n.reset}    # Build APK`)):u==="ios"?(i.plain(`  ${n.green}${b(d,"ios")}${n.reset}  # Run on iOS (macOS only)`),i.plain(`  ${n.green}${b(d,"ios:build")}${n.reset}  # Build iOS app`)):i.plain(`  ${n.green}${b(d,"tauri:dev")}${n.reset}  # Launches ${u} desktop app`):i.plain(`  ${n.green}${b(d,"dev")}${n.reset}`),i.plain(`
-${n.green}Happy coding!${n.reset}`);}async function Le(){ae();let{projectName:e,flags:t}=oe(),r=q();i.plain(ie),i.info(`Detected OS: ${r}`);let a=e;a||(A()||(i.error("Project name required in non-interactive mode."),w(1)),a=await input({message:"Project name?",default:"my-bini-app",validate:c=>c?W(c)?true:"Lowercase letters, numbers, hyphens only. Max 50 chars.":"Name required."})),W(a)||(i.error("Invalid project name. Use lowercase letters, numbers, and hyphens only. Max 50 chars."),w(1));let o=await ge(t,a);await _e(a,o,t,r);}Le().catch(e=>{i.error(`Fatal: ${e instanceof Error?e.message:String(e)}`),w(1);});
+`),u&&t.warn(`README uses "npm" as placeholder \u2014 update manually if needed.
+`),t.success("Get started:"),t.plain(`
+  ${n.green}cd ${e}${n.reset}`),!k&&!u&&t.plain(`  ${n.green}${l} install${n.reset}`),g&&m?m==="android"?(t.plain(`
+${n.bold}${n.cyan}Android Commands:${n.reset}`),t.plain(`  ${n.green}${b(l,"android")}${n.reset}          # Run on Android emulator/device`),t.plain(`  ${n.green}${b(l,"android:build")}${n.reset}    # Build APK`)):m==="ios"?(t.plain(`  ${n.green}${b(l,"ios")}${n.reset}  # Run on iOS (macOS only)`),t.plain(`  ${n.green}${b(l,"ios:build")}${n.reset}  # Build iOS app`)):t.plain(`  ${n.green}${b(l,"tauri:dev")}${n.reset}  # Launches ${m} desktop app`):t.plain(`  ${n.green}${b(l,"dev")}${n.reset}`),t.plain(`
+${n.green}Happy coding!${n.reset}`);}async function Le(){ae();let{projectName:e,flags:i}=oe(),r=q();t.plain(te),t.info(`Detected OS: ${r}`);let a=e;a||(A()||(t.error("Project name required in non-interactive mode."),w(1)),a=await input({message:"Project name?",default:"my-bini-app",validate:c=>c?z(c)?true:"Lowercase letters, numbers, hyphens only. Max 50 chars.":"Name required."})),z(a)||(t.error("Invalid project name. Use lowercase letters, numbers, and hyphens only. Max 50 chars."),w(1));let o=await ge(i,a);await _e(a,o,i,r);}Le().catch(e=>{t.error(`Fatal: ${e instanceof Error?e.message:String(e)}`),w(1);});
