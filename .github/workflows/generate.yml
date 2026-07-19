@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Install CLI dependencies
         run: npm install
 
-      - name: Setup Rust for iOS
+      - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-apple-ios
@@ -29,9 +29,10 @@ jobs:
       - name: Install iOS Rust targets
         run: |
           rustup target add aarch64-apple-ios
+          rustup target add aarch64-apple-ios-sim
           rustup target add x86_64-apple-ios
 
-      - name: Generate iOS project using CLI
+      - name: Generate iOS project
         run: |
           node dist/index.js my-ios-app \
             --platform ios \
@@ -50,7 +51,7 @@ jobs:
       - name: Build for iOS Simulator
         run: |
           cd my-ios-app
-          npx @tauri-apps/cli ios build --target aarch64-apple-ios
+          npx @tauri-apps/cli ios build --target aarch64-sim
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
